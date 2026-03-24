@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首爾之旅 · 2026 · 賞櫻醫美購物</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Bebas+Neue&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   RESET & TOKENS
+══════════════════════════════════════════ */
+:root {
+  --ink: #1a1a2e;
+  --paper: #f5f0e8;
+  --accent: #c0392b;
+  --gold: #b8860b;
+  --muted: #7a7a8a;
+  --card: #fffef9;
+  --border: #ddd8cc;
+  --radius: 4px;
+
+  /* fluid spacing */
+  --space-xs: clamp(8px,  1.5vw, 12px);
+  --space-sm: clamp(12px, 2vw,   20px);
+  --space-md: clamp(20px, 4vw,   40px);
+  --space-lg: clamp(40px, 6vw,   80px);
+
+  /* fluid type */
+  --text-xs:  clamp(13px, 1.4vw, 14px);
+  --text-sm:  clamp(15px, 1.6vw, 16px);
+  --text-md:  clamp(17px, 2vw,   18px);
+  --text-lg:  clamp(20px, 2.5vw, 22px);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-md) var(--space-md) 20px;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 0%,   #f9c8d4 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 60%,  #f4a7bb 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 90%,  #e8b4c8 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 100%, #f2ccd8 0%, transparent 60%),
+    #f8e0e8;
+}
+.hero-bloom {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 75% 20%, rgba(255,200,220,0.35) 0%, transparent 45%),
+    radial-gradient(ellipse at 20% 40%, rgba(255,180,200,0.25) 0%, transparent 40%);
+  pointer-events: none;
+}
+.hero-hangul {
+  position: absolute;
+  top: -4%; right: -2%;
+  font-size: clamp(200px, 40vw, 520px);
+  line-height: 1;
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  color: rgba(180,60,90,0.08);
+  user-select: none;
+}
+.hero-tag {
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c0395a;
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(52px, 12vw, 120px);
+  font-weight: 900;
+  color: #5a1a2e;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-title span { color: #c0395a; }
+.hero-subtitle {
+  margin-top: var(--space-sm);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  color: rgba(90,26,46,0.6);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-dates {
+  position: absolute;
+  top: var(--space-md); right: var(--space-md);
+  text-align: right;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-dates .d-range {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  color: #5a1a2e;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.hero-dates .d-year {
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  color: rgba(90,26,46,0.5);
+  margin-top: 4px;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+.scroll-hint span { font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); }
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(90,26,46,0.3), transparent);
+  animation: scrollLine 2s 1.5s infinite;
+}
+
+
+
+/* ── HERO OVERVIEW PILLS ── */
+.hero-overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+}
+.hero-ov-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(192,57,90,0.2);
+  border-radius: 10px;
+  padding: 10px 16px;
+  min-width: 64px;
+  flex: 1;
+}
+.hero-ov-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+.hero-ov-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 4vw, 30px);
+  color: #c0392b;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.hero-ov-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(90,26,46,0.65);
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .hero-ov-item { padding: 8px 10px; min-width: 54px; }
+  .hero-ov-label { font-size: 9px; }
+}
+
+/* ── WEATHER BADGE ── */
+.weather-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(255,105,130,0.12);
+  color: #c0392b;
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.day-banner .weather-badge {
+  background: rgba(255,255,255,0.15);
+  color: #ffcce0;
+  border-color: rgba(255,200,220,0.3);
+  font-size: 12px;
+}
+/* ── HERO FLIGHT BAR ── */
+.hero-flights {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+.hf-card {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(180,60,90,0.2);
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 220px;
+}
+.hf-badge {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.hf-badge.out  { background: rgba(192,57,43,0.15); color: #c0392b; }
+.hf-badge.ret  { background: rgba(142,68,173,0.15); color: #8e44ad; }
+.hf-badge.xfer { background: rgba(41,128,185,0.15); color: #2980b9; }
+.hf-info { display: flex; flex-direction: column; gap: 2px; }
+.hf-fn   { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #5a1a2e; letter-spacing: 0.08em; line-height: 1; }
+.hf-route { font-size: 12px; color: #5a1a2e; font-weight: 500; }
+.hf-arr  { font-family: 'Bebas Neue', sans-serif; font-size: 14px; color: #c0392b; }
+.hf-sub  { font-size: 11px; color: rgba(90,26,46,0.55); }
+@media (max-width: 480px) {
+  .hf-card { min-width: 100%; }
+}
+/* ══════════════════════════════════════════
+   OVERVIEW STRIP
+══════════════════════════════════════════ */
+.overview-strip {
+  background: var(--ink);
+  padding: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ov-item {
+  text-align: center;
+  padding: var(--space-xs) clamp(12px, 3vw, 32px);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.ov-item:last-child { border-right: none; }
+.ov-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 40px);
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.ov-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════════════════ */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+.section-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ══════════════════════════════════════════
+   CURRENCY SECTION
+══════════════════════════════════════════ */
+.fx-section {
+  background: linear-gradient(160deg, #3d0a1e 0%, #2a0a18 40%, #1a0a10 100%);
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-lg) var(--space-md);
+}
+.fx-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(255,150,200,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 80%, rgba(180,100,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.fx-bg-won {
+  position: absolute; right: -40px; top: -30px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(160px, 35vw, 380px);
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+.fx-inner { max-width: 900px; margin: 0 auto; position: relative; }
+.fx-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.fx-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.2;
+}
+.fx-title span { color: #f9a8d0; }
+.fx-rate-badge {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,200,230,0.25);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  text-align: center;
+}
+.fx-rate-badge .rb-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(18px, 3vw, 26px);
+  color: #f9a8d0;
+  line-height: 1;
+}
+.fx-rate-badge .rb-label { font-size: var(--text-xs); letter-spacing: 0.2em; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.fx-converter {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,200,230,0.15);
+  border-radius: var(--radius);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.fx-converter label { font-size: var(--text-xs); letter-spacing: 0.2em; color: rgba(255,255,255,0.4); display: block; margin-bottom: 6px; }
+.fx-input-wrap { flex: 1; min-width: 130px; }
+.fx-input {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,200,230,0.2);
+  border-radius: 3px;
+  padding: 10px 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 4vw, 28px);
+  color: #fff;
+  letter-spacing: 0.05em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.fx-input:focus { border-color: #f9a8d0; }
+.fx-arrow-btn {
+  font-size: 20px;
+  color: rgba(255,255,255,0.3);
+  padding-top: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+.fx-arrow-btn:hover { color: #f9a8d0; }
+.fx-result-wrap { flex: 1; min-width: 130px; }
+.fx-result {
+  width: 100%;
+  background: rgba(249,168,208,0.1);
+  border: 1px solid rgba(249,168,208,0.3);
+  border-radius: 3px;
+  padding: 10px 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 4vw, 28px);
+  color: #f9a8d0;
+  letter-spacing: 0.05em;
+}
+.fx-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.fx-row {
+  background: rgba(15,5,25,0.6);
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.15s;
+}
+.fx-row:hover { background: rgba(249,168,208,0.08); }
+.fx-row .krw { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: rgba(255,255,255,0.7); }
+.fx-row .arrow { font-size: 10px; color: rgba(255,255,255,0.2); }
+.fx-row .twd { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: #f9a8d0; }
+.fx-col-head {
+  background: rgba(249,168,208,0.12);
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  grid-column: 1 / -1;
+}
+
+/* ══════════════════════════════════════════
+   DAY PILLS
+══════════════════════════════════════════ */
+.day-overview {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-md) 0;
+}
+.day-pills {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: clamp(4px, 1vw, 8px);
+  margin-bottom: var(--space-md);
+}
+.day-pill {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: clamp(8px, 1.5vw, 12px) 4px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.day-pill:hover { border-color: var(--accent); transform: translateY(-2px); }
+.day-pill .dp-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(15px, 2.5vw, 20px);
+  color: var(--ink);
+}
+.day-pill .dp-date { font-size: clamp(8px, 1vw, 10px); letter-spacing: 0.05em; color: var(--muted); margin-top: 2px; }
+.day-pill .dp-icon { font-size: clamp(12px, 2vw, 16px); margin-bottom: 4px; }
+.day-pill.outdoor { border-top: 3px solid #27ae60; }
+.day-pill.indoor  { border-top: 3px solid #2980b9; }
+.day-pill.medical { border-top: 3px solid #e91e8c; }
+.day-pill.mixed   { border-top: 3px solid var(--gold); }
+.day-pill.travel  { border-top: 3px solid var(--accent); }
+
+/* ══════════════════════════════════════════
+   DAY CARD
+══════════════════════════════════════════ */
+.day-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-sm);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.day-card.visible { opacity: 1; transform: none; }
+.day-card-header {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--border);
+}
+.day-num-block {
+  width: clamp(56px, 8vw, 72px);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border-right: 1px solid var(--border);
+}
+.day-num-block .dn-day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  color: var(--ink);
+  line-height: 1;
+}
+.day-num-block .dn-label { font-size: 9px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+.day-header-info { flex: 1; padding: clamp(12px, 2vw, 16px) clamp(12px, 2.5vw, 20px); }
+.day-header-info h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(14px, 2.5vw, 16px);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.day-header-info .day-subtitle { font-size: var(--text-xs); color: var(--muted); }
+.day-theme-badge {
+  align-self: center;
+  margin-right: clamp(8px, 1.5vw, 16px);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════
+   SAKURA ROW & TIP BOX
+══════════════════════════════════════════ */
+.sakura-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px var(--space-sm);
+  background: #fff5f9;
+  border-top: 1px solid #f5d0e8;
+}
+.sakura-spot {
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  background: rgba(233,30,140,0.08);
+  color: #c0186e;
+  border-radius: 20px;
+  border: 1px solid rgba(233,30,140,0.2);
+}
+.tip-box {
+  background: #fff8e8;
+  border-left: 3px solid var(--gold);
+  padding: 10px var(--space-sm);
+  margin: 0 0 0 0;
+  font-size: var(--text-sm);
+  color: #6b5a00;
+  line-height: 1.7;
+}
+.tip-box strong { color: #8a6500; }
+
+/* ══════════════════════════════════════════
+   STOP TABLE — Desktop
+══════════════════════════════════════════ */
+.stop-table { width: 100%; border-collapse: collapse; }
+.stop-table tr { border-bottom: 1px solid var(--border); }
+.stop-table tr:last-child { border-bottom: none; }
+.stop-table tr:hover { background: #faf8f4; }
+.stop-table td {
+  padding: clamp(8px, 1.5vw, 12px) clamp(10px, 2vw, 16px);
+  vertical-align: top;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  line-height: 1.6;
+  word-break: break-word;
+}
+.stop-table td.stop-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink);
+  width: 38%;
+}
+.stop-table td.stop-transport { width: 30%; }
+.stop-table td.stop-cost { width: 16%; font-size: var(--text-xs); }
+.stop-table td.stop-time {
+  width: 16%;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: var(--ink);
+  letter-spacing: 0.03em;
+}
+.stop-table thead td {
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.3);
+  padding: 7px clamp(10px, 2vw, 16px);
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+  background: #f8f5ef;
+}
+
+/* ── Stop Table → Cards on Mobile ── */
+@media (max-width: 680px) {
+  .stop-table thead { display: none; }
+  .stop-table, .stop-table tbody, .stop-table tr { display: block; width: 100%; }
+  .stop-table tr {
+    background: var(--card);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    position: relative;
+  }
+  .stop-table tr:hover { background: #faf8f4; }
+  .stop-table td { display: block; width: 100% !important; padding: 0; border: none; }
+
+  /* Name row */
+  .stop-table td.stop-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px dashed var(--border);
+    line-height: 1.5;
+  }
+
+  /* Transport row */
+  .stop-table td.stop-transport {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 4px 0;
+  }
+  .stop-table td.stop-transport::before {
+    content: '🚏 ';
+    font-style: normal;
+  }
+
+  /* Cost + Time: side by side */
+  .stop-table td.stop-cost,
+  .stop-table td.stop-time {
+    display: inline-block;
+    width: auto !important;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-right: 6px;
+  }
+  .stop-table td.stop-cost {
+    background: rgba(39,174,96,0.1);
+    color: #27ae60;
+    font-family: inherit;
+  }
+  .stop-table td.stop-cost::before { content: '⏱ '; }
+  .stop-table td.stop-time {
+    background: rgba(192,57,43,0.08);
+    color: var(--accent);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+  }
+  .stop-table td.stop-time::before { content: '🕐 '; font-family: inherit; font-size: 11px; }
+}
+
+/* ══════════════════════════════════════════
+   TIMELINE
+══════════════════════════════════════════ */
+.timeline { position: relative; }
+.tl-day {
+  display: flex;
+  gap: clamp(16px, 3vw, 40px);
+  margin-bottom: clamp(32px, 5vw, 60px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.tl-day.visible { opacity: 1; transform: none; }
+.tl-date-col {
+  width: clamp(56px, 8vw, 80px);
+  flex-shrink: 0;
+  text-align: right;
+}
+.tl-month { font-size: var(--text-xs); letter-spacing: 0.15em; color: var(--muted); }
+.tl-day-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 6vw, 52px);
+  line-height: 1;
+  color: var(--ink);
+}
+.tl-line {
+  width: 1px;
+  background: var(--border);
+  position: relative;
+  flex-shrink: 0;
+}
+.tl-line::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.tl-content { flex: 1; padding-top: 4px; }
+
+/* ══════════════════════════════════════════
+   CARDS (timeline)
+══════════════════════════════════════════ */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 28px);
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+}
+.card.shuttle::before { background: #2980b9; }
+.card.hotel::before   { background: var(--gold); }
+.card.bus::before     { background: #27ae60; }
+.card.flight-return::before { background: #8e44ad; }
+.card.clinic::before  { background: #e91e8c; }
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 8px;
+}
+.card-icon {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+.icon-flight   { background: rgba(192,57,43,0.12); }
+.icon-shuttle  { background: rgba(41,128,185,0.12); }
+.icon-hotel    { background: rgba(184,134,11,0.12); }
+.icon-bus      { background: rgba(39,174,96,0.12); }
+.card-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--ink);
+  flex: 1;
+}
+.card-badge {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  background: rgba(192,57,43,0.1);
+  color: var(--accent);
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.card-badge.blue   { background: rgba(41,128,185,0.1); color: #2980b9; }
+.card-badge.green  { background: rgba(39,174,96,0.1); color: #27ae60; }
+.card-badge.gold   { background: rgba(184,134,11,0.1); color: var(--gold); }
+.card-badge.purple { background: rgba(142,68,173,0.1); color: #8e44ad; }
+
+.flight-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+.flight-row:first-of-type { border-top: none; }
+.f-time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 4vw, 28px);
+  color: var(--ink);
+  letter-spacing: 0.05em;
+  width: clamp(60px, 8vw, 80px);
+  flex-shrink: 0;
+}
+.f-airport { flex: 1; }
+.f-iata { font-family: 'Bebas Neue', sans-serif; font-size: clamp(14px, 2.5vw, 18px); letter-spacing: 0.1em; color: var(--muted); }
+.f-name  { font-size: var(--text-xs); color: var(--muted); margin-top: 2px; }
+.flight-meta {
+  display: flex;
+  gap: clamp(10px, 2vw, 20px);
+  font-size: var(--text-xs);
+  color: var(--muted);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+  flex-wrap: wrap;
+}
+.flight-meta span::before { content: attr(data-label) ' '; font-weight: 500; color: var(--ink); }
+.info-row {
+  display: flex;
+  gap: 10px;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin-bottom: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.info-row strong { color: var(--ink); font-weight: 500; min-width: 72px; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════
+   CONFIRMATION BOX
+══════════════════════════════════════════ */
+.confirm-box {
+  background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
+  color: #fff;
+  border-radius: 2px;
+  padding: clamp(16px, 3vw, 28px) clamp(16px, 3vw, 32px);
+  margin-top: 14px;
+}
+.confirm-label { font-size: var(--text-xs); letter-spacing: 0.3em; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+.confirm-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 4vw, 32px);
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  word-break: break-all;
+}
+.confirm-hotel { font-size: var(--text-sm); margin-top: 12px; line-height: 1.8; }
+.confirm-hotel .h-name { font-family: 'Noto Serif TC', serif; font-size: var(--text-lg); font-weight: 700; color: #fff; }
+.confirm-hotel .h-en   { font-size: var(--text-xs); color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+.confirm-hotel .h-addr,
+.confirm-hotel .h-tel  { font-size: var(--text-xs); color: rgba(255,255,255,0.6); }
+
+/* ══════════════════════════════════════════
+   BUS STEPS
+══════════════════════════════════════════ */
+.bus-steps { margin-top: 12px; }
+.bus-step { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+.step-num {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #27ae60;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-text { font-size: var(--text-sm); line-height: 1.7; color: var(--muted); }
+.step-text strong { color: var(--ink); font-weight: 500; }
+
+/* ══════════════════════════════════════════
+   MAP BUTTON
+══════════════════════════════════════════ */
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184,134,11,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.map-btn:hover { border-color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   TIPS SECTION
+══════════════════════════════════════════ */
+.tips-section {
+  background: #faf7f2;
+  border-top: 1px solid var(--border);
+  padding: var(--space-lg) var(--space-md);
+}
+.tips-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+  margin-top: var(--space-md);
+}
+.tip-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(14px, 2.5vw, 20px) clamp(14px, 2.5vw, 24px);
+}
+.tip-card h4 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: var(--text-md);
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.tip-card p, .tip-card li { font-size: var(--text-sm); color: var(--muted); line-height: 1.8; }
+.tip-card ul { padding-left: 14px; }
+
+/* ══════════════════════════════════════════
+   CLINIC SECTION
+══════════════════════════════════════════ */
+.clinic-addr-box {
+  background: #fdf5fa;
+  border: 1px solid #f5d0e8;
+  border-radius: 2px;
+  padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 20px);
+  margin-bottom: 14px;
+}
+
+/* ══════════════════════════════════════════
+   QUICK REFERENCE (dark)
+══════════════════════════════════════════ */
+.quick-ref {
+  background: var(--ink);
+  padding: var(--space-lg) var(--space-md);
+}
+.quick-ref-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+}
+.qr-card {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: clamp(16px, 2.5vw, 24px);
+  border-radius: 2px;
+}
+.qr-card.bus-span { grid-column: span 2; }
+.qr-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 10px;
+}
+.qr-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(18px, 3vw, 22px);
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+.qr-detail {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+  line-height: 1.8;
+}
+
+/* ══════════════════════════════════════════
+   ITIN SECTION (full 7-day tabbed)
+══════════════════════════════════════════ */
+.itin-wrap { max-width: 960px; margin: 0 auto; padding: var(--space-lg) var(--space-md); }
+.itin-header { margin-bottom: var(--space-md); }
+.itin-header h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(24px, 5vw, 48px);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.itin-header h2 em { color: var(--accent); font-style: normal; }
+.itin-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.itin-meta span {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+.day-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: var(--space-md); }
+.day-tab {
+  padding: clamp(6px, 1vw, 8px) clamp(10px, 2vw, 16px);
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.day-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+.day-tab:hover:not(.active) { border-color: var(--ink); color: var(--ink); }
+.day-panel { display: none; }
+.day-panel.active { display: block; opacity: 1; }
+.day-banner {
+  background: var(--ink);
+  border-radius: 2px;
+  padding: clamp(20px, 3vw, 28px) clamp(20px, 3vw, 32px);
+  margin-bottom: var(--space-sm);
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+}
+.day-banner .db-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 7vw, 56px);
+  color: rgba(255,255,255,0.15);
+  line-height: 1;
+}
+.day-banner .db-title { font-family: 'Noto Serif TC', serif; font-size: clamp(14px, 2.5vw, 20px); font-weight: 700; color: #fff; margin-top: -6px; }
+.day-banner .db-sub { font-size: var(--text-xs); color: rgba(255,255,255,0.4); margin-top: 6px; }
+.day-banner .db-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.day-banner .db-tag { font-size: var(--text-xs); padding: 4px 10px; border-radius: 2px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+.day-banner .db-tag.cherry { background: rgba(255,100,130,0.25); color: #ff9aae; }
+.day-banner .db-tag.indoor { background: rgba(100,180,255,0.2); color: #90d0ff; }
+.day-banner .db-tag.beauty { background: rgba(233,30,140,0.25); color: #ff80c8; }
+.day-banner .db-tag.night  { background: rgba(180,100,255,0.2); color: #d0aaff; }
+.stop-list { display: flex; flex-direction: column; gap: 10px; }
+.stop {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 20px);
+  display: grid;
+  grid-template-columns: clamp(54px, 8vw, 80px) 1fr auto;
+  gap: 12px;
+  align-items: start;
+  position: relative;
+  overflow: hidden;
+}
+.stop::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; background:var(--border); }
+.stop.type-transport::before { background:#3498db; }
+.stop.type-food::before { background:#e67e22; }
+.stop.type-shop::before { background:#27ae60; }
+.stop.type-cherry::before { background:#ff6b8a; }
+.stop.type-beauty::before { background:#e91e8c; }
+.stop.type-hotel::before { background:var(--gold); }
+.stop.type-indoor::before { background:#5b9bd5; }
+.stop-time-col { font-family:'Bebas Neue',sans-serif; font-size:clamp(15px, 2.5vw, 18px); color:var(--muted); letter-spacing:0.05em; padding-top:2px; }
+.stop-name-row { font-weight:500; font-size:var(--text-md); color:var(--ink); margin-bottom:4px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.stop-name-row .s-icon { font-size:15px; }
+.stop-desc { font-size:var(--text-sm); color:var(--muted); line-height:1.8; }
+.stop-desc strong { color:var(--ink); font-weight:500; }
+.stop-meta { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.stop-chip { font-size:var(--text-xs); padding:2px 8px; border-radius:2px; background:rgba(0,0,0,0.05); color:var(--muted); white-space:nowrap; }
+.stop-chip.transport { background:rgba(52,152,219,0.1); color:#3498db; }
+.stop-chip.cost { background:rgba(39,174,96,0.1); color:#27ae60; }
+.stop-chip.tip { background:rgba(255,107,138,0.1); color:#e91e8c; }
+.stop-naver {
+  font-size:var(--text-xs); letter-spacing:0.1em; color:#03c75a;
+  text-decoration:none; border:1px solid rgba(3,199,90,0.3);
+  padding:4px 10px; border-radius:2px; white-space:nowrap;
+  transition:all 0.2s; display:inline-flex; align-items:center; gap:4px; margin-top:8px;
+}
+.stop-naver:hover { background:#03c75a; color:#fff; }
+.stop-right { display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+.warn-box { background:#fff5f5; border:1px solid #ffd0d0; border-left:3px solid var(--accent); border-radius:2px; padding:12px clamp(12px,2vw,18px); margin-top:12px; font-size:var(--text-sm); color:#8a2020; line-height:1.8; }
+.warn-box strong { color:var(--accent); }
+.note-box { background:#f0f8ff; border:1px solid #c8e0f8; border-left:3px solid #3498db; border-radius:2px; padding:12px clamp(12px,2vw,18px); margin-top:12px; font-size:var(--text-sm); color:#1a4a7a; line-height:1.8; }
+.note-box strong { color:#3498db; }
+.cherry-map { background:linear-gradient(135deg,#fff0f5,#ffeef8); border:1px solid #ffd0e8; border-radius:2px; padding:clamp(16px,3vw,24px); margin-top:var(--space-sm); }
+.cherry-map h4 { font-family:'Noto Serif TC',serif; font-size:var(--text-md); font-weight:700; color:#c0186e; margin-bottom:14px; }
+.cherry-spots { display:flex; flex-direction:column; gap:10px; }
+.cherry-spot { display:flex; align-items:center; gap:12px; font-size:var(--text-sm); }
+.cs-day { width:44px; font-family:'Bebas Neue',sans-serif; font-size:14px; color:#e91e8c; flex-shrink:0; }
+.cs-name { flex:1; color:var(--ink); font-weight:500; }
+.cs-type { font-size:var(--text-xs); padding:2px 8px; border-radius:2px; background:rgba(233,30,140,0.1); color:#e91e8c; white-space:nowrap; }
+.tips-card { background:var(--card); border:1px solid var(--border); border-radius:2px; padding:clamp(16px,2.5vw,24px); }
+.tips-card h4 { font-family:'Noto Serif TC',serif; font-size:var(--text-md); font-weight:700; color:var(--ink); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.tips-card ul { list-style:none; font-size:var(--text-sm); color:var(--muted); line-height:2; }
+.tips-card ul li::before { content:'→ '; color:var(--accent); }
+.tips-card ul li strong { color:var(--ink); font-weight:500; }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: var(--space-md);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+}
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════ */
+
+/* ── Tablet 481–768 ── */
+@media (min-width: 481px) and (max-width: 768px) {
+  .day-pills { grid-template-columns: repeat(4, 1fr); }
+  .fx-grid   { grid-template-columns: repeat(3, 1fr); }
+  .quick-ref-grid { grid-template-columns: repeat(2, 1fr); }
+  .qr-card.bus-span { grid-column: span 2; }
+  .tips-grid { grid-template-columns: repeat(2, 1fr); }
+  .stop { grid-template-columns: 54px 1fr; }
+  .stop-right { display: none; }
+}
+
+/* ── Mobile ≤ 480 ── */
+@media (max-width: 480px) {
+  .hero { padding: 28px 20px 48px; }
+  .hero-dates { top: 24px; right: 20px; }
+
+  .overview-strip { padding: 28px 16px; gap: 4px; }
+  .ov-item { padding: 0 10px; }
+
+  .day-overview { padding: 28px 16px 0; }
+  .day-pills { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .day-pill .dp-date { display: none; }
+
+  .day-card-header { flex-wrap: wrap; }
+  .day-theme-badge { margin: 0 0 4px 0; order: 3; width: 100%; text-align: center; }
+
+  .fx-grid { grid-template-columns: repeat(2, 1fr); }
+  .fx-converter { flex-direction: column; gap: 8px; }
+  .fx-arrow-btn { padding-top: 0; transform: rotate(90deg); }
+
+  .stop { grid-template-columns: 48px 1fr; }
+  .stop-right { display: none; }
+
+  .quick-ref-grid { grid-template-columns: 1fr; }
+  .qr-card.bus-span { grid-column: span 1; }
+
+  .tips-grid { grid-template-columns: 1fr; }
+  .tips-section { padding: 40px 16px; }
+
+  .tl-day { gap: 14px; }
+  .section { padding: 40px 16px; }
+  .itin-wrap { padding: 40px 16px; }
+
+  .day-tabs { gap: 5px; }
+  .day-tab { padding: 6px 10px; font-size: 10px; }
+
+  .flight-meta { flex-direction: column; gap: 4px; }
+
+  .confirm-num { font-size: 18px; }
+}
+
+/* ── Large desktop ≥ 1200 ── */
+@media (min-width: 1200px) {
+  .fx-grid { grid-template-columns: repeat(6, 1fr); }
+  .day-pills { gap: 10px; }
+}
+
+/* ── NAV MENU ── */
+.nav-btn {
+  display: inline-block;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.nav-btn:hover {
+  color: #c0392b;
+  border-bottom-color: #c0392b;
+}
+@media (max-width: 480px) {
+  .nav-btn { padding: 10px 11px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<!-- NAV MENU -->
+<nav style="background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+  <div style="max-width:960px;margin:0 auto;padding:0 20px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;">
+    <div style="display:inline-flex;gap:0;padding:4px 0;">
+      <a href="#fx-anchor" class="nav-btn">💱 匯率</a>
+      <a href="#lpoint-anchor" class="nav-btn">🪙 樂天會員</a>
+      <a href="#exchange-anchor" class="nav-btn">💴 換錢所</a>
+      <a href="#myeongdong-anchor" class="nav-btn">🏙️ 明洞商圈</a>
+      <a href="#pharmacy-anchor" class="nav-btn">💊 藥局</a>
+      <a href="#itinerary-anchor" class="nav-btn">📅 行程</a>
+      <a href="#tips-anchor" class="nav-btn">💡 叮嚀</a>
+      <a href="#clinic-anchor" class="nav-btn">💆 醫美</a>
+      <a href="#tax-anchor" class="nav-btn">🧾 退稅</a>
+      <a href="#emergency-anchor" class="nav-btn">🚨 緊急</a>
+    </div>
+  </div>
+</nav>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bloom"></div>
+  <div class="hero-hangul">서울</div>
+  <div class="hero-dates">
+    <div class="d-range">3.28 — 4.3</div>
+    <div class="d-year">2026 · 7 DAYS</div>
+  </div>
+  <div class="hero-tag">Travel Itinerary</div>
+  <h1 class="hero-title">首爾<br><span>之旅</span></h1>
+  <p class="hero-subtitle">SEOUL · KOREA · SPRING</p>
+
+  <!-- Hero flight bar -->
+  <div class="hero-flights">
+    <div class="hf-card">
+      <div class="hf-badge out">去程</div>
+      <div class="hf-info">
+        <span class="hf-fn">KE2022</span>
+        <span class="hf-route">TPE T1 <span class="hf-arr">12:25</span> → ICN T2 <span class="hf-arr">15:50</span></span>
+        <span class="hf-sub">3/28 · 波音777 · 經濟艙L</span>
+      </div>
+    </div>
+    <div class="hf-card">
+      <div class="hf-badge ret">回程</div>
+      <div class="hf-info">
+        <span class="hf-fn">KE2027</span>
+        <span class="hf-route">ICN T2 <span class="hf-arr">16:10</span> → TPE T1 <span class="hf-arr">17:50</span></span>
+        <span class="hf-sub">4/3 · A330-300 · 經濟艙U</span>
+      </div>
+    </div>
+    <div class="hf-card">
+      <div class="hf-badge xfer">韓國接送</div>
+      <div class="hf-info">
+        <span class="hf-fn" style="font-size:15px;">6015號 → 明洞站</span>
+        <span class="hf-route">T2 B1層 <span class="hf-arr">28號月台</span></span>
+        <span class="hf-sub">T2 B1層 28號月台</span>
+      </div>
+    </div>
+    <div class="hf-card">
+      <div class="hf-badge" style="background:rgba(39,174,96,0.15);color:#27ae60;">台灣接送</div>
+      <div class="hf-info">
+        <span class="hf-fn" style="font-size:14px;">出發 09:40 ／ 返 17:50後</span>
+        <span class="hf-route">3/28 桃園機場 <span class="hf-arr">T1</span> 出發</span>
+        <span class="hf-sub">4/3 降落後於接送區等候</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- CURRENCY SECTION -->
+<div id="fx-anchor" class="fx-section">
+  <div class="fx-bg-won">₩</div>
+  <div class="fx-inner">
+    <div class="fx-header">
+      <div>
+        <div style="font-size:10px;letter-spacing:0.3em;color:rgba(255,180,220,0.5);margin-bottom:8px;">CURRENCY · 匯率參考</div>
+        <div class="fx-title">韓圓 <span>↔</span> 台幣<br><span style="font-size:16px;color:rgba(255,255,255,0.4);font-family:'Noto Sans TC',sans-serif;font-weight:300;">KRW · TWD 換算表</span></div>
+      </div>
+      <div class="fx-rate-badge">
+        <div class="rb-label">自訂匯率基準（₩1,000 = NT$?）</div>
+        <div style="display:flex;align-items:center;gap:6px;margin:6px 0;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#f9a8d0;">NT$</span>
+          <input id="rateInput" type="number" value="21.5" step="0.1" min="1"
+            style="width:80px;background:rgba(255,255,255,0.12);border:1px solid rgba(249,168,208,0.4);border-radius:3px;padding:6px 10px;font-family:'Bebas Neue',sans-serif;font-size:24px;color:#fff;letter-spacing:0.05em;outline:none;text-align:center;"
+            oninput="updateRate()">
+        </div>
+        <div class="rb-label" style="margin-top:2px;">輸入後自動更新換算表</div>
+      </div>
+    </div>
+
+    <!-- Interactive Converter -->
+    <div class="fx-converter">
+      <div class="fx-input-wrap">
+        <label>🇰🇷 韓圓 KRW ₩</label>
+        <input class="fx-input" id="krwInput" type="number" value="10000" placeholder="₩" oninput="calcFX()">
+      </div>
+      <div class="fx-arrow-btn" onclick="swapFX()">⇄</div>
+      <div class="fx-result-wrap">
+        <label>🇹🇼 台幣 TWD NT$</label>
+        <div class="fx-result" id="twdResult">NT$ 215</div>
+      </div>
+    </div>
+
+    <!-- Rate Table -->
+    <div class="fx-grid">
+      <div class="fx-col-head"><span>KRW 韓圓</span><span>TWD 台幣</span></div>
+      <div class="fx-row" data-krw="1000"><span class="krw">₩1,000</span><span class="arrow">→</span><span class="twd">NT$21.5</span></div>
+      <div class="fx-row" data-krw="2000"><span class="krw">₩2,000</span><span class="arrow">→</span><span class="twd">NT$43</span></div>
+      <div class="fx-row" data-krw="3000"><span class="krw">₩3,000</span><span class="arrow">→</span><span class="twd">NT$64.5</span></div>
+      <div class="fx-row" data-krw="4000"><span class="krw">₩4,000</span><span class="arrow">→</span><span class="twd">NT$86</span></div>
+      <div class="fx-row" data-krw="5000"><span class="krw">₩5,000</span><span class="arrow">→</span><span class="twd">NT$107.5</span></div>
+      <div class="fx-row" data-krw="6000"><span class="krw">₩6,000</span><span class="arrow">→</span><span class="twd">NT$129</span></div>
+      <div class="fx-row" data-krw="7000"><span class="krw">₩7,000</span><span class="arrow">→</span><span class="twd">NT$150.5</span></div>
+      <div class="fx-row" data-krw="8000"><span class="krw">₩8,000</span><span class="arrow">→</span><span class="twd">NT$172</span></div>
+      <div class="fx-row" data-krw="9000"><span class="krw">₩9,000</span><span class="arrow">→</span><span class="twd">NT$193.5</span></div>
+      <div class="fx-row" data-krw="10000"><span class="krw">₩10,000</span><span class="arrow">→</span><span class="twd">NT$215</span></div>
+      <div class="fx-row" data-krw="11000"><span class="krw">₩11,000</span><span class="arrow">→</span><span class="twd">NT$236.5</span></div>
+      <div class="fx-row" data-krw="12000"><span class="krw">₩12,000</span><span class="arrow">→</span><span class="twd">NT$258</span></div>
+      <div class="fx-row" data-krw="13000"><span class="krw">₩13,000</span><span class="arrow">→</span><span class="twd">NT$279.5</span></div>
+      <div class="fx-row" data-krw="14000"><span class="krw">₩14,000</span><span class="arrow">→</span><span class="twd">NT$301</span></div>
+      <div class="fx-row" data-krw="15000"><span class="krw">₩15,000</span><span class="arrow">→</span><span class="twd">NT$322.5</span></div>
+      <div class="fx-row" data-krw="16000"><span class="krw">₩16,000</span><span class="arrow">→</span><span class="twd">NT$344</span></div>
+      <div class="fx-row" data-krw="17000"><span class="krw">₩17,000</span><span class="arrow">→</span><span class="twd">NT$365.5</span></div>
+      <div class="fx-row" data-krw="18000"><span class="krw">₩18,000</span><span class="arrow">→</span><span class="twd">NT$387</span></div>
+      <div class="fx-row" data-krw="19000"><span class="krw">₩19,000</span><span class="arrow">→</span><span class="twd">NT$408.5</span></div>
+      <div class="fx-row" data-krw="20000"><span class="krw">₩20,000</span><span class="arrow">→</span><span class="twd">NT$430</span></div>
+      <div class="fx-row" data-krw="25000"><span class="krw">₩25,000</span><span class="arrow">→</span><span class="twd">NT$537.5</span></div>
+      <div class="fx-row" data-krw="30000"><span class="krw">₩30,000</span><span class="arrow">→</span><span class="twd">NT$645</span></div>
+      <div class="fx-row" data-krw="35000"><span class="krw">₩35,000</span><span class="arrow">→</span><span class="twd">NT$752.5</span></div>
+      <div class="fx-row" data-krw="40000"><span class="krw">₩40,000</span><span class="arrow">→</span><span class="twd">NT$860</span></div>
+      <div class="fx-row" data-krw="45000"><span class="krw">₩45,000</span><span class="arrow">→</span><span class="twd">NT$967.5</span></div>
+      <div class="fx-row" data-krw="50000"><span class="krw">₩50,000</span><span class="arrow">→</span><span class="twd">NT$1,075</span></div>
+      <div class="fx-row" data-krw="55000"><span class="krw">₩55,000</span><span class="arrow">→</span><span class="twd">NT$1,182.5</span></div>
+      <div class="fx-row" data-krw="60000"><span class="krw">₩60,000</span><span class="arrow">→</span><span class="twd">NT$1,290</span></div>
+    </div>
+  </div>
+</div>
+
+  <span id="lpoint-anchor"></span><!-- L.POINT 會員資訊 -->
+  <div style="margin-top:28px;background:linear-gradient(135deg,#fff 60%,#f5f0ff 100%);border-radius:8px;padding:clamp(20px,3vw,32px);border:1px solid rgba(107,63,160,0.2);">
+    <div>
+    <div style="font-size:11px;letter-spacing:0.35em;text-transform:uppercase;color:#6b3fa0;margin-bottom:16px;display:flex;align-items:center;gap:12px;">L.POINT 會員資訊<span style="flex:1;height:1px;background:rgba(107,63,160,0.2);"></span></div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,32px);align-items:flex-start;">
+
+      <!-- Barcode card – fixed size so scanners can read it -->
+      <div style="background:#fff;border:2px solid #ddd;border-radius:8px;padding:20px 24px 16px;text-align:center;flex-shrink:0;">
+        <div style="font-size:13px;letter-spacing:0.18em;color:#6b3fa0;font-weight:700;margin-bottom:14px;">L.POINT MOBILE CARD</div>
+        <img src="data:image/jpeg;base64,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"
+             alt="L.POINT 會員條碼 8710-4103-0145-8282"
+             style="width:280px;height:auto;display:block;margin:0 auto;"
+             loading="eager">
+        <div style="margin-top:10px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.15em;color:#1a1a2e;">8710-4103-0145-8282</div>
+        <div style="font-size:10px;color:#999;margin-top:4px;letter-spacing:0.1em;">掃描此條碼累積 L.POINT 點數</div>
+      </div>
+
+      <!-- LINE PAY tips -->
+      <div style="flex:1;min-width:220px;">
+        <div style="font-family:'Noto Serif TC',serif;font-size:clamp(16px,2.5vw,20px);font-weight:900;color:#1a1a2e;margin-bottom:14px;line-height:1.4;">
+          🛒 樂天超市 LINE PAY 優惠
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div style="background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border:1px solid #a5d6a7;border-radius:8px;padding:14px 16px;">
+            <div style="font-size:10px;letter-spacing:0.2em;color:#2e7d32;font-weight:700;margin-bottom:4px;">✅ 滿 ₩70,000（約 NT$1,500）</div>
+            <div style="font-size:clamp(14px,2vw,16px);color:#1b5e20;font-weight:500;">🎁 限定收納袋</div>
+          </div>
+
+          <div style="background:linear-gradient(135deg,#e3f2fd,#e8eaf6);border:1px solid #90caf9;border-radius:8px;padding:14px 16px;">
+            <div style="font-size:10px;letter-spacing:0.2em;color:#1565c0;font-weight:700;margin-bottom:4px;">✅ 滿 ₩100,000（約 NT$2,150）</div>
+            <div style="font-size:clamp(14px,2vw,16px);color:#0d47a1;font-weight:500;">🛍️ 外國旅客限定大提袋</div>
+          </div>
+
+          <div style="background:#fffde7;border:1px solid #ffe082;border-radius:8px;padding:12px 16px;font-size:12px;color:#5d4037;line-height:1.8;">
+            <strong>⚠️ 注意事項</strong><br>
+            以店家庫存量為準。<br>
+            若結帳櫃台未拿到，<strong>憑收據至服務台兌換</strong>。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <span id="exchange-anchor"></span><!-- 明洞換錢所 standalone -->
+  <div style="margin-top:32px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">💱 明洞換錢所</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+    </div>
+      <!-- Currency Exchange -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2980b9;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">💱 明洞換錢所</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">三家集中同一區，建議到場比較匯率再換，需出示護照 &nbsp;·&nbsp; 明洞站 5號出口出站，往前直走遇 CU 便利商店後右轉，步行約 3–5 分鐘</div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+          <div style="background:#f5f9fd;border:1px solid #c8ddf0;border-radius:4px;padding:12px 14px;">
+            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 大使館</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
+              📍 서울중구명동2길26<br>
+              🕘 09:00 – <strong>21:50</strong><br>
+              <span style="font-size:12px;">（最晚關門）</span>
+            </div>
+            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+
+          <div style="background:#f0faf4;border:1px solid #b8e8cc;border-radius:4px;padding:12px 14px;position:relative;">
+            <div style="position:absolute;top:-1px;right:8px;background:#27ae60;color:#fff;font-size:12px;padding:2px 8px;border-radius:0 0 4px 4px;letter-spacing:0.05em;">✅推薦</div>
+            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 一品香</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
+              📍 서울중구남대문로52-13 B1<br>
+              🕘 平日21:00/假日20:30<br>
+              ⚠️ 室內禁止拍照
+            </div>
+            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+
+          <div style="background:#fafafa;border:1px solid var(--border);border-radius:4px;padding:12px 14px;">
+            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 大信</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
+              📍 서울중구명동2가105<br>
+              🕘 09:00 – 21:00<br>
+              <span style="font-size:12px;">（大使館隔壁）</span>
+            </div>
+            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+
+        </div>
+
+        <div style="background:#fffbf0;border-left:3px solid var(--gold);padding:8px 12px;margin-top:12px;border-radius:0 4px 4px 0;font-size:14px;color:#7a6000;line-height:1.8;">
+          💡 三家匯率常常一樣，多走幾步比一下再換！換錢需出示<strong>護照</strong>，換完請<strong>當場點清鈔票</strong>
+        </div>
+      </div>
+
+
+  </div>
+
+  <span id="myeongdong-anchor"></span><!-- 明洞商圈 -->
+  <div style="margin-top:32px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">🏙️ 明洞商圈逛街指南</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="font-size:13px;color:var(--muted);white-space:nowrap;">住明洞晚間隨時可逛</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+
+      <!-- Daiso -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e74c3c;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🛒 Daiso 明洞站旗艦店</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          📍 明洞站 1號出口旁<br>
+          💊 旅行小物・保濕面膜・日用品補貨首選
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+      <!-- Olive Young -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #03c75a;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🧴 Olive Young 明洞TOWN店</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          올리브영 명동타운점（舊 明洞總店）<br>
+          📍 서울특별시 중구 명동길 53 1～2F<br>
+          🚇 2號線 乙支路入口站 <strong>6號出口</strong> 步行5分<br>
+          🚇 4號線 明洞站 <strong>8號出口</strong> 步行6分
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+      <!-- Lotte Duty Free -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🏬 明洞樂天免稅店 本店</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          롯데면세점 명동 본점<br>
+          📍 서울 중구 을지로 30（9至12樓）<br>
+          🕘 <strong>09:30 – 20:00</strong><br>
+          💡 1樓 LOTTE Tourist（GUCCI旁）辦樂天會員卡，記得帶護照
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+    </div>
+  </div>
+
+  <span id="pharmacy-anchor"></span><!-- 藥局資訊 -->
+  <div style="margin-top:28px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">💊 藥局資訊</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+
+      <!-- 明洞Myeong藥局 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e74c3c;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:8px;">💊 明洞Myeong藥局</div>
+        <div style="font-size:13px;font-weight:400;color:var(--muted);margin-bottom:8px;">명동명약국</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          📍 首爾特別市中區南大門路7街11102號<br>
+          🕘 每日 <strong>09:30 – 21:30</strong>
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+      <!-- 弘益藥局 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #27ae60;border-radius:2px;padding:16px 18px;position:relative;">
+        <div style="position:absolute;top:-1px;right:10px;background:#27ae60;color:#fff;font-size:12px;padding:2px 10px;border-radius:0 0 4px 4px;letter-spacing:0.05em;">365天全年無休</div>
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:4px;">💊 弘益藥局</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Hongik Pharmacy</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          📍 Seoul, Mapo-gu, Yanghwa-ro 18-gil, 7 1층<br>
+          🕘 每日 <strong>09:00 – 23:30</strong>（開到很晚！超級貼心 🙌）<br>
+          ☎ <strong>02-337-5414</strong><br>
+          🚇 弘大站 <strong>8號出口</strong> 步行 1 分鐘
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+          <span style="font-size:13px;padding:3px 8px;background:rgba(39,174,96,0.1);color:#27ae60;border-radius:3px;">🗣️ 中文服務</span>
+          <span style="font-size:13px;padding:3px 8px;background:rgba(41,128,185,0.1);color:#2980b9;border-radius:3px;">🧾 即時退稅</span>
+          <span style="font-size:13px;padding:3px 8px;background:rgba(142,68,173,0.1);color:#8e44ad;border-radius:3px;">💳 WOWPASS</span>
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+    </div>
+  </div>
+
+<!-- ════════════════════════════════════════════
+     7 DAY ITINERARY
+════════════════════════════════════════════ -->
+<div style="background:var(--paper); border-top:1px solid var(--border);">
+<div id="itinerary-anchor" class="itin-wrap">
+
+  <div class="itin-header">
+    <div class="section-label">完整七日行程</div>
+    <h2>首爾 7天6夜<br><em>賞櫻 · 醫美 · 購物</em></h2>
+    <div class="itin-meta">
+      <span>📅 2026/3/28 (六) — 4/3 (五)</span>
+      <span>🏨 首爾明洞海茵娜酒店</span>
+      <span>🌸 櫻花滿開預測期</span>
+      <span>✈️ KE2022 / KE2027</span>
+    </div>
+  </div>
+
+  <!-- Cherry spots overview -->
+  <div class="cherry-map">
+    <h4>🌸 本次賞櫻地圖</h4>
+    <div class="cherry-spots">
+      <div class="cherry-spot">
+        <div class="cs-day">Day 2</div>
+        <div class="cs-name">首爾林公園 Seoul Forest</div>
+        <div class="cs-type">白天</div>
+      </div>
+      <div class="cherry-spot">
+        <div class="cs-day">Day 3</div>
+        <div class="cs-name">N首爾塔 南山公園</div>
+        <div class="cs-type">黃昏</div>
+      </div>
+      <div class="cherry-spot">
+        <div class="cs-day">Day 4</div>
+        <div class="cs-name">汝矣島 輪中路</div>
+        <div class="cs-type">夜櫻</div>
+      </div>
+      <div class="cherry-spot">
+        <div class="cs-day">Day 5</div>
+        <div class="cs-name">石村湖 蠶室</div>
+        <div class="cs-type">夜櫻</div>
+      </div>
+      <div class="cherry-spot">
+        <div class="cs-day">Day 6</div>
+        <div class="cs-name">慶熙大學 和平殿堂</div>
+        <div class="cs-type">白天</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- DAY TABS -->
+  <div style="margin-top:48px;">
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="switchDay(1)">Day 1 · 3/28</button>
+      <button class="day-tab" onclick="switchDay(2)">Day 2 · 3/29</button>
+      <button class="day-tab" onclick="switchDay(3)">Day 3 · 3/30</button>
+      <button class="day-tab" onclick="switchDay(4)">Day 4 · 3/31</button>
+      <button class="day-tab" onclick="switchDay(5)">Day 5 · 4/1</button>
+      <button class="day-tab" onclick="switchDay(6)">Day 6 · 4/2</button>
+      <button class="day-tab" onclick="switchDay(7)">Day 7 · 4/3</button>
+    </div>
+
+    <!-- ══ DAY 1 ══ -->
+    <div class="day-panel active" id="day-panel-1">
+      <div class="day-banner">
+        <div class="db-left">
+          <div class="db-num">01</div>
+          <div class="db-title">抵達首爾 · 明洞大本營</div>
+          <div class="db-sub">3/28 (六) · 入境 → 明洞 → Daiso &nbsp;<span class="weather-badge">☀️ 19°C / 6°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag">🏨 入住</span>
+          <span class="db-tag">🛍️ 購物</span>
+          <span class="db-tag">🍽️ 晚餐</span>
+        </div>
+      </div>
+      <div class="stop-list">
+
+        <div class="stop type-transport">
+          <div class="stop-time">15:50</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">✈️</span> 仁川機場 T2 入境</div>
+            <div class="stop-desc">KE2022 落地。入境、提領行李、換 T-money 卡（建議每人儲值 ₩30,000）</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 約 70 分鐘</span>
+              <span class="stop-chip cost">💴 免費</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%2B%EC%A0%9C2%ED%84%B0%EB%AF%B8%EB%84%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%2B%EC%A0%9C2%ED%84%B0%EB%AF%B8%EB%84%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%2B%EC%A0%9C2%ED%84%B0%EB%AF%B8%EB%84%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">17:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚌</span> 機場巴士 6015 → 明洞</div>
+            <div class="stop-desc">
+              T2 B1層 <strong>28號月台</strong> 搭乘 6015 號巴士，於<strong>明洞站</strong>下車，步行 2-3 分鐘至飯店。<br>
+              ✅ 優點：免搬行李上下地鐵，直達明洞。
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚌 6015號巴士</span>
+              <span class="stop-chip duration">⏱ 約 90 分鐘</span>
+              <span class="stop-chip cost">💴 ₩17,000/人</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-hotel">
+          <div class="stop-time">18:40</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏨</span> 首爾明洞海茵娜酒店 入住</div>
+            <div class="stop-desc">明洞站 8號出口步行 3 分鐘。放行李、梳洗，準備出發吃晚餐。</div>
+            <div class="stop-meta">
+              <span class="stop-chip tip">🔑 確認號 1128144281581556</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/Henn-na%2BHotel%2BSeoul%2BMyeongdong" onclick="var a=document.createElement('a');a.href='nmap://search?query=Henn-na%2BHotel%2BSeoul%2BMyeongdong&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/Henn-na%2BHotel%2BSeoul%2BMyeongdong','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-food">
+          <div class="stop-time">19:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🍽️</span> 明洞商圈晚餐</div>
+            <div class="stop-desc">明洞烤肉、炸雞、海鮮煎餅任選。步行即可抵達商圈。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 60 分鐘</span>
+              <span class="stop-chip cost">💴 依餐費而定</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%2B%EB%A7%9B%EC%A7%91" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%AA%85%EB%8F%99%2B%EB%A7%9B%EC%A7%91&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%2B%EB%A7%9B%EC%A7%91','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+
+      </div><!-- /stop-list -->
+    </div><!-- /day-panel-1 -->
+
+    <!-- ══ DAY 2 ══ -->
+    <div class="day-panel" id="day-panel-2">
+      <div class="day-banner" style="background:linear-gradient(135deg,#1a2e1a,#1e3a2a);">
+        <div class="db-left">
+          <div class="db-num">02</div>
+          <div class="db-title">聖水洞 · 首爾林 · E-mart</div>
+          <div class="db-sub">3/29 (日) · 術前盡情戶外活動 &nbsp;<span class="weather-badge">🌤️ 20°C / 8°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag cherry">🌸 賞櫻</span>
+          <span class="db-tag">🛒 採購</span>
+          <span class="db-tag">☀️ 戶外</span>
+        </div>
+      </div>
+      <div class="note-box"><strong>📌 重點：</strong>3/29 為週日（第五個週日），超市正常營業。術前最後一天盡情戶外活動！</div>
+      <div class="stop-list" style="margin-top:16px;">
+
+        <div class="stop type-cherry">
+          <div class="stop-time">10:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🌸</span> 首爾林公園 Seoul Forest</div>
+            <div class="stop-desc">
+              <strong>交通選擇：</strong><br>
+              🚕 <strong>計程車（推薦）</strong>：明洞直達，約 20 分鐘，車資約 ₩10,000。兩人分攤只要 150 台幣，省轉車力氣！<br>
+              🚇 地鐵：4號線→東大門歷史文化公園轉2號線→往十里轉水仁盆唐線→首爾林站 3號出口（需轉兩次）
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+              <span class="stop-chip cost">💴 免費入場</span>
+              <span class="stop-chip tip">🌸 賞櫻點①</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9C%EC%9A%B8%EC%88%B2&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">13:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏙️</span> 聖水洞商圈 午餐 + 逛街</div>
+            <div class="stop-desc">JUUNEEDU、Dior 聖水概念店、特色咖啡廳。首爾最潮的文青街區。</div>
+            <div style="background:#f5f9fd;border:1px solid #c8ddf0;border-radius:4px;padding:12px 14px;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.9;">
+              <strong style="color:var(--ink);font-size:14px;">🛍️ JUUNEEDU 首爾林分店</strong><br>
+              📍 서울 성동구 서울숲2길 8-11<br>
+              🕘 <strong>12:00 – 20:00</strong><br>
+              ☎ 070-8832-7089
+              <a class="stop-naver" style="margin-top:8px;display:inline-flex;" href="https://map.naver.com/v5/search/JUUNEEDU%20%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=JUUNEEDU+서울숲&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/JUUNEEDU+서울숲','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 4 小時</span>
+              <span class="stop-chip cost">💴 依個人消費</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">17:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🛒</span> E-mart 往十里店</div>
+            <div class="stop-desc">
+              位於 Bitplex 商場 2/3F。採購<strong>浩肯包、韓國零食、日用品</strong>。<br>
+              🚕 從聖水洞計程車約 2.5km，約 15 分鐘，車資約 ₩6,500（一台車）。
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 2號線 往十里站</span>
+              <span class="stop-chip duration">⏱ 2 小時</span>
+              <span class="stop-chip cost">💴 依個人消費</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%99%95%EC%8B%AD%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%99%95%EC%8B%AD%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%99%95%EC%8B%AD%EB%A6%AC','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">19:20</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚕</span> 返回明洞飯店</div>
+            <div class="stop-desc">戰利品多建議搭計程車；若還走得動可搭地鐵 2號線→4號線。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚕 計程車約 ₩12,000</span>
+              <span class="stop-chip duration">⏱ 30 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ DAY 3 ══ -->
+    <div class="day-panel" id="day-panel-3">
+      <div class="day-banner" style="background:linear-gradient(135deg,#2e1a2e,#3a1a35);">
+        <div class="db-left">
+          <div class="db-num">03</div>
+          <div class="db-title">漢南洞醫美 · 南山夕陽</div>
+          <div class="db-sub">3/30 (一) · 醫美日，交通以計程車為主 &nbsp;<span class="weather-badge">⛅ 19°C / 9°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag beauty">💆 醫美</span>
+          <span class="db-tag cherry">🌸 黃昏賞櫻</span>
+        </div>
+      </div>
+      <div class="tip-box"><strong>💡 醫美日注意：</strong>交通以計程車為主，減少勞累。南山搭循環公車攻頂，不用爬坡！</div>
+      <div class="stop-list" style="margin-top:16px;">
+
+        <div class="stop type-beauty">
+          <div class="stop-time">09:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">💆</span> Heer 皮膚科醫美 出發</div>
+            <div class="stop-desc">
+              建議早上 09:00 從明洞站出發，<strong>10:00 預約</strong>，2位帶護照到櫃檯報到即可 🫶🏻<br>
+              🚇 明洞站 <strong>4號線</strong> → 銅雀站 → 轉乘 <strong>9號線急行（Express）</strong> → <strong>新論峴站 7號出口</strong><br>
+              📍 看到 Musinsa 往右轉，<strong>海底撈那棟直接上 10 樓</strong>
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip beauty">💆 預約 10:00 · 2位</span>
+              <span class="stop-chip transport">🚇 4→9號線急行</span>
+              <span class="stop-chip tip">🪪 記得帶護照</span>
+            </div>
+            <a class="stop-naver" href="https://naver.me/5vc6saQC" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-food">
+          <div class="stop-time">13:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🍜</span> 漢南洞商圈 午餐 + 逛街</div>
+            <div class="stop-desc">Mardi Mercredi、Emis 等潮牌聚集地。輕鬆步行探索漢南大道。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 2 小時</span>
+              <span class="stop-chip cost">💴 依個人消費</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99%2B%EC%83%81%EA%B6%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%95%9C%EB%82%A8%EB%8F%99%2B%EC%83%81%EA%B6%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99%2B%EC%83%81%EA%B6%8C','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">15:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚕</span> 計程車 → 南山公園入口</div>
+            <div class="stop-desc">至南山圖書館 / 國立劇場下車，再轉搭南山循環巴士 01 攻頂。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚕 約 ₩8,000</span>
+              <span class="stop-chip duration">⏱ 30 分鐘</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%82%A8%EC%82%B0%EB%8F%84%EC%84%9C%EA%B4%80" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%82%A8%EC%82%B0%EB%8F%84%EC%84%9C%EA%B4%80&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%82%A8%EC%82%B0%EB%8F%84%EC%84%9C%EA%B4%80','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-cherry">
+          <div class="stop-time">15:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🗼</span> N首爾塔 · 南山公園賞櫻</div>
+            <div class="stop-desc">
+              搭南山循環巴士 01 攻頂，黃昏看夕陽與滿開櫻花。術後避免劇烈運動，搭車上去輕鬆賞景。
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚌 南山循環巴士 01 · ₩1,400</span>
+              <span class="stop-chip duration">⏱ 2.5 小時</span>
+              <span class="stop-chip tip">🌸 賞櫻點②</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/N%EC%84%9C%EC%9A%B8%ED%83%80%EC%9B%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=N%EC%84%9C%EC%9A%B8%ED%83%80%EC%9B%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/N%EC%84%9C%EC%9A%B8%ED%83%80%EC%9B%8C','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">18:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚌</span> 南山循環巴士返回明洞</div>
+            <div class="stop-desc">搭南山循環巴士 01 至忠武路站或退溪路下車，步行返回明洞用餐。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚌 ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 60 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ DAY 4 ══ -->
+    <div class="day-panel" id="day-panel-4">
+      <div class="day-banner" style="background:linear-gradient(135deg,#0d1a2e,#152540);">
+        <div class="db-left">
+          <div class="db-num">04</div>
+          <div class="db-title">術後修復 · The Hyundai · 汝矣島夜櫻</div>
+          <div class="db-sub">3/31 (二) · 白天全室內防曬，晚上看夜櫻 &nbsp;<span class="weather-badge">🌤️ 20°C / 10°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag indoor">🏢 全室內</span>
+          <span class="db-tag night">🌙 夜櫻</span>
+        </div>
+      </div>
+      <div class="warn-box"><strong>⚠️ 術後第一天：</strong>全天室內行程，避免日曬。白天在 The Hyundai 冷氣房待到傍晚再出來看夜櫻，皮膚安全第一！</div>
+      <div class="stop-list" style="margin-top:16px;">
+
+        <div class="stop type-transport">
+          <div class="stop-time">11:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚇</span> 地鐵 → 汝矣島站</div>
+            <div class="stop-desc">明洞站搭 4號線 → 忠武路轉 5號線 → 汝矣島站 3號出口（室內連通 The Hyundai，可避光）</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 2→5號線 · ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 40 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-indoor">
+          <div class="stop-time">11:40</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏬</span> The Hyundai Seoul</div>
+            <div class="stop-desc">首爾最美百貨。室內自然採光設計、頂樓室內花園、Gentle Monster、PopMart、美食街應有盡有。全程冷氣房，術後修復最佳去處！</div>
+            <div class="stop-meta">
+              <span class="stop-chip indoor">🏢 全室內</span>
+              <span class="stop-chip duration">⏱ 5 小時</span>
+              <span class="stop-chip cost">💴 依個人消費</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%8D%94%ED%98%84%EB%8C%80%EC%84%9C%EC%9A%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8D%94%ED%98%84%EB%8C%80%EC%84%9C%EC%9A%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8D%94%ED%98%84%EB%8C%80%EC%84%9C%EC%9A%B8','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-food">
+          <div class="stop-time">16:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🍽️</span> 百貨內晚餐</div>
+            <div class="stop-desc">在 The Hyundai B1–B2 美食樓層用餐，吃飽後天色漸暗，剛好出去看夜櫻。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-cherry">
+          <div class="stop-time">18:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🌸</span> 汝矣島 輪中路夜櫻</div>
+            <div class="stop-desc">就在百貨旁步行可達。平日夜櫻人少，粉色花海倒映在漢江，超美！太陽下山後皮膚不受紫外線影響。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+              <span class="stop-chip cost">💴 免費</span>
+              <span class="stop-chip tip">🌙 夜櫻點③</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84%2B%EC%9C%A4%EC%A4%91%EB%A1%9C%2B%EB%B2%9A%EA%BD%83" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%97%AC%EC%9D%98%EB%8F%84%2B%EC%9C%A4%EC%A4%91%EB%A1%9C%2B%EB%B2%9A%EA%BD%83&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84%2B%EC%9C%A4%EC%A4%91%EB%A1%9C%2B%EB%B2%9A%EA%BD%83','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">19:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚇</span> 地鐵返回明洞</div>
+            <div class="stop-desc">汝矣島站 → 5號線 → 乙支路4街轉乘或步行</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 5號線 · ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 40 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ DAY 5 ══ -->
+    <div class="day-panel" id="day-panel-5">
+      <div class="day-banner" style="background:linear-gradient(135deg,#1a1a0d,#2a2a15);">
+        <div class="db-left">
+          <div class="db-num">05</div>
+          <div class="db-title">蠶室購物 · 石村湖夜櫻</div>
+          <div class="db-sub">4/1 (三) · 白天室內防曬，COEX + 樂天塔 &nbsp;<span class="weather-badge">☀️ 20°C / 7°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag indoor">🏢 室內為主</span>
+          <span class="db-tag night">🌙 夜櫻</span>
+          <span class="db-tag">🛍️ 購物</span>
+        </div>
+      </div>
+      <div class="warn-box"><strong>⚠️ 術後第二天：</strong>平日逛樂天人少舒服。石村湖夜櫻晚上非常擁擠，請注意隨身財物！最佳時間 16:00–18:00 出動。</div>
+      <div class="stop-list" style="margin-top:16px;">
+
+        <div class="stop type-indoor">
+          <div class="stop-time">10:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">📚</span> COEX 星空圖書館（選）</div>
+            <div class="stop-desc">全球最美圖書館之一，網美打卡必去。位於三成站直達，可作為上午行程。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 2號線 三成站</span>
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-indoor">
+          <div class="stop-time">11:10</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏙️</span> 樂天世界塔 · Jellycat 快閃</div>
+            <div class="stop-desc">
+              三成站 → 蠶室站。B1 水族館店 / 4F 兒童區的 Jellycat 快閃。室內連通，全程冷氣。
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 2號線 蠶室站</span>
+              <span class="stop-chip duration">⏱ 4 小時</span>
+              <span class="stop-chip cost">💴 依購物而定</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-food">
+          <div class="stop-time">16:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🥩</span> 松里團路晚餐</div>
+            <div class="stop-desc">
+              <strong>肉花食堂（육화식당）</strong>頂級烤肉首選，或特色手工漢堡、時尚辣炒年糕。步行即可抵達。<br>
+              🌸 吃飽後剛好沿著湖畔看打燈夜櫻！
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%86%A1%EB%A6%AC%EB%8B%A8%EA%B8%B8%2B%EB%A7%9B%EC%A7%91" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%86%A1%EB%A6%AC%EB%8B%A8%EA%B8%B8%2B%EB%A7%9B%EC%A7%91&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%86%A1%EB%A6%AC%EB%8B%A8%EA%B8%B8%2B%EB%A7%9B%EC%A7%91','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-cherry">
+          <div class="stop-time">18:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🌸</span> 石村湖夜櫻</div>
+            <div class="stop-desc">樂天塔旁步行 5 分鐘。湖面倒映夜燈與粉色櫻花，超夢幻。<strong>最佳時段：16:00–18:00</strong>，人潮相對少。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+              <span class="stop-chip cost">💴 免費</span>
+              <span class="stop-chip tip">🌙 夜櫻點④</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98%2B%EB%B2%9A%EA%BD%83" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98%2B%EB%B2%9A%EA%BD%83&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98%2B%EB%B2%9A%EA%BD%83','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">20:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚇</span> 地鐵返回明洞</div>
+            <div class="stop-desc">蠶室站 2號線 → 往十里 轉 5號線 → 明洞</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 2→4號線 · ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 50 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ DAY 6 ══ -->
+    <div class="day-panel" id="day-panel-6">
+      <div class="day-banner" style="background:linear-gradient(135deg,#1a2a1a,#253825);">
+        <div class="db-left">
+          <div class="db-num">06</div>
+          <div class="db-title">歐風校園賞櫻 · 益善洞</div>
+          <div class="db-sub">4/2 (四) · 地鐵 1號線串連行程 &nbsp;<span class="weather-badge">☀️ 21°C / 7°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag cherry">🌸 白天賞櫻</span>
+          <span class="db-tag">☕ 文青逛街</span>
+        </div>
+      </div>
+      <div class="tip-box"><strong>💡 慶熙大攻略：</strong>務必在回基站 1號出口搭 01號小巴直達和平殿堂，<strong>從上往下走如走紅毯</strong>，往上爬會懷疑人生！</div>
+      <div class="stop-list" style="margin-top:16px;">
+
+        <div class="stop type-transport">
+          <div class="stop-time">09:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚇</span> 地鐵 1號線 → 回基站</div>
+            <div class="stop-desc">明洞站搭 4號線 → 東大門歷史文化公園 轉 1號線 → 回基站（Exit 1）</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 1號線 · ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 60 分鐘</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">10:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚌</span> 綠色巴士 東大門 01 → 校頂</div>
+            <div class="stop-desc">
+              回基站 <strong>1號出口</strong> 搭 <strong>01號小巴</strong>，直達慶熙大學最高點和平殿堂。<br>
+              🚨 <strong>切記從上往下走</strong>，像走紅毯！往上爬會懷疑人生！
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚌 ₩1,200/人</span>
+              <span class="stop-chip duration">⏱ 15 分鐘</span>
+              <span class="stop-chip tip">⬆️ 搭到終點站下車</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-cherry">
+          <div class="stop-time">10:45</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏛️</span> 慶熙大學 · 和平殿堂賞櫻</div>
+            <div class="stop-desc">歐式城堡建築配滿開粉白櫻花，夢幻校園。從頂部沿坡道<strong>往下走</strong>，像在走紅毯 🌸</div>
+            <div style="background:#fff0f5;border-left:3px solid #ff6b8a;padding:10px 12px;margin-top:10px;border-radius:0 4px 4px 0;font-size:12px;color:#a0186e;line-height:1.9;">
+              📌 <strong>慶熙大學攻略：</strong><br>
+              1️⃣ 回基站 <strong>1號出口</strong>，搭 <strong>01號小巴</strong><br>
+              2️⃣ 直達和平殿堂頂部（終點站）<br>
+              3️⃣ <strong>從上往下走</strong>，像走紅毯！<br>
+              ⚠️ 往上爬會懷疑人生，切記！
+            </div>
+            <div class="stop-meta" style="margin-top:10px;">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+              <span class="stop-chip cost">💴 免費</span>
+              <span class="stop-chip tip">🌸 賞櫻點⑤</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%2B%ED%8F%89%ED%99%94%EC%9D%98%EC%A0%84%EB%8B%B9" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%2B%ED%8F%89%ED%99%94%EC%9D%98%EC%A0%84%EB%8B%B9&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%2B%ED%8F%89%ED%99%94%EC%9D%98%EC%A0%84%EB%8B%B9','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">14:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏘️</span> 益善洞韓屋村 下午茶 + 逛街</div>
+            <div class="stop-desc">回基站直搭 1號線 → 鍾路3街，平路巷弄逛起來輕鬆。韓屋咖啡廳、韓式小吃、文創雜貨。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚇 1號線 回基→鍾路3街 · ₩1,400</span>
+              <span class="stop-chip duration">⏱ 2.5 小時</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">17:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🛒</span> 樂天超市 首爾站</div>
+            <div class="stop-desc">
+              回基站（1號線）→ 益善洞（鍾路3街）→ 首爾站，完全順路，倒數第二天採購最即時！<br>
+              結帳時可即時退稅、支援 L.POINT 折扣，2F 客服中心可兌換贈品（購物滿 ₩100,000）。
+            </div>
+
+            <!-- L.POINT 辦理說明 -->
+            <div style="background:#fff8f0;border-left:3px solid var(--gold);padding:12px 14px;margin-top:12px;border-radius:0 4px 4px 0;font-size:13px;color:#7a5000;line-height:1.9;">
+              🪙 <strong>L.POINT 會員怎麼辦？</strong><br>
+              <strong>方法一（推薦）：出發前線上申請</strong><br>
+              前往 <strong>L.POINT 官方網站</strong>，選中文介面 → 同意條款 → 填 Email → 輸入護照號碼與效期完成驗證。無需韓國門號！<br>
+              建議安裝 <strong>L.POINT App</strong>，可離線顯示條碼，結帳掃碼即享會員折扣與積分。<br><br>
+              <strong>方法二：現場服務台申辦</strong><br>
+              至超市 / 百貨 <strong>1F 顧客服務中心</strong>，出示護照現場申辦，申辦後即可掃碼使用。<br><br>
+              💡 L.POINT 積分可在樂天超市、百貨、免稅店、CU/GS25 等合作通路累積與折抵，<strong>1點 = 1韓元</strong>
+            </div>
+
+            <div class="stop-meta" style="margin-top:10px;">
+              <span class="stop-chip transport">🚇 1號線 首爾站</span>
+              <span class="stop-chip duration">⏱ 2 小時</span>
+              <span class="stop-chip tip">🧾 結帳即時退稅</span>
+              <span class="stop-chip cost">💳 L.POINT 折扣</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ DAY 7 ══ -->
+    <div class="day-panel" id="day-panel-7">
+      <div class="day-banner" style="background:linear-gradient(135deg,#2e1a1a,#3a2020);">
+        <div class="db-left">
+          <div class="db-num">07</div>
+          <div class="db-title">悠閒早午餐 · 返程</div>
+          <div class="db-sub">4/3 (五) · 退房 · 最後購物衝刺 · KE2027 &nbsp;<span class="weather-badge">🌤️ 21°C / 9°C</span></div>
+        </div>
+        <div class="db-tags">
+          <span class="db-tag">🛍️ 最後衝刺</span>
+          <span class="db-tag">✈️ 返台</span>
+        </div>
+      </div>
+      <div class="stop-list">
+
+        <div class="stop type-hotel">
+          <div class="stop-time">10:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏨</span> 飯店退房 · 寄放行李</div>
+            <div class="stop-desc">
+              退房後行李可寄放飯店，或步行 5 分鐘至明洞站 <strong>T-Luggage / Easy Drop</strong> 寄行李（₩10,000/件，直送仁川 T2），空手逛街最爽！
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1 小時</span>
+              <span class="stop-chip tip">💡 建議送件直達 T2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-food">
+          <div class="stop-time">11:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🥪</span> 明洞早午餐 · Isaac Toast</div>
+            <div class="stop-desc">韓國國民早餐，熱壓吐司 + 雞蛋，明洞分店就在商圈內。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B4%EC%82%AD%ED%86%A0%EC%8A%A4%ED%8A%B8%2B%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B4%EC%82%AD%ED%86%A0%EC%8A%A4%ED%8A%B8%2B%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B4%EC%82%AD%ED%86%A0%EC%8A%A4%ED%8A%B8%2B%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">12:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🛍️</span> 最後購物衝刺</div>
+            <div class="stop-desc">
+              Olive Young 補貨、Daiso 掃貨、退稅補件。<br>
+              📍 鄰近首選：<strong>南大門市場</strong>（步行 15 分）或 <strong>乙支路咖啡街</strong>（地鐵 1 站）<br>
+              VT 微針、Daiso 膠囊面膜 CP 值超高！
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1–1.5 小時</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%2B%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%2B%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%2B%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">11:50</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚌</span> 機場巴士 6015 → 仁川 T2</div>
+            <div class="stop-desc">
+              於明洞站搭 6015 號，預留 <strong>90 分鐘</strong>車程。建議 11:50–12:00 左右上車，留足報到＋退稅時間。
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚌 6015 · ₩17,000/人</span>
+              <span class="stop-chip duration">⏱ 90 分鐘</span>
+              <span class="stop-chip tip">⚠️ 預留充裕時間</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">14:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🏛️</span> 仁川機場 T2 · 報到 + 退稅</div>
+            <div class="stop-desc">辦理退稅（海關蓋章 → 退稅機），再前往登機門。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 2 小時</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">16:10</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">✈️</span> KE2027 返回台北</div>
+            <div class="stop-desc">空中巴士 A330-300，飛行 2 小時 40 分，17:50 落地桃園機場 T1。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">✈️ KE2027 · 經濟艙 U</span>
+              <span class="stop-chip duration">⏱ 2h 40m</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /day tabs -->
+
+  <span id="tips-anchor"></span><!-- TIPS SECTION -->
+  <div style="margin-top:64px;">
+    <div class="section-label">旅遊小叮嚀</div>
+    <div class="tips-grid">
+
+      <div class="tips-card">
+        <h4>🚕 地鐵 vs 計程車</h4>
+        <ul>
+          <li>轉乘超過 1 次 → <strong>搭計程車</strong></li>
+          <li>走路超過 15 分 → <strong>搭計程車</strong></li>
+          <li>3 個最值得搭：明洞→首爾林 / 聖水→E-mart / 醫美→南山</li>
+          <li>合計約 <strong>₩25,000</strong>，省 1.5 小時</li>
+        </ul>
+      </div>
+
+      <div class="tips-card">
+        <h4>🩹 醫美術後防曬</h4>
+        <ul>
+          <li>Day 4–5 全天室內行程</li>
+          <li>物理性防曬 + <strong>帽子、陽傘必備</strong></li>
+          <li>韓國春天超乾燥，保濕面膜備足</li>
+          <li>Day 1 Daiso / Olive Young 買齊</li>
+        </ul>
+      </div>
+
+      <div class="tips-card">
+        <h4>🌸 賞櫻天氣備案</h4>
+        <ul>
+          <li>下雨時汝矣島 & 石村湖行程</li>
+          <li>↔ 可與 The Hyundai / 樂天塔 互換</li>
+          <li>3月底–4月初為首爾櫻花滿開預測期</li>
+          <li>時機抓得非常好！</li>
+        </ul>
+      </div>
+
+      <div class="tips-card">
+        <h4>💳 T-money 卡</h4>
+        <ul>
+          <li>每人卡內保持 <strong>₩20,000+</strong></li>
+          <li>計程車也可直接刷 T-money</li>
+          <li>仁川機場 T2 入境後即可購買/儲值</li>
+          <li>建議初次儲值 ₩30,000</li>
+        </ul>
+      </div>
+
+
+      <div class="tips-card">
+        <h4>⚠️ 安全注意</h4>
+        <ul>
+          <li>汝矣島 & 石村湖夜櫻人潮極多</li>
+          <li>請隨時注意<strong>隨身財物</strong></li>
+          <li>建議包包在前胸方向揹</li>
+          <li>貴重物品分開存放</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /itin-wrap -->
+</div><!-- /itinerary bg -->
+
+
+<span id="clinic-anchor"></span><!-- CLINIC SECTION -->
+<div class="section" style="padding-top:0;">
+  <div class="section-label">醫美診所資訊</div>
+
+  <div class="card clinic" style="border-left-color:#e91e8c;">
+    <div class="card-header">
+      <div style="display:flex;align-items:center;">
+        <div class="card-icon" style="background:rgba(233,30,140,0.1);margin-right:12px;">💆</div>
+        <div>
+          <div class="card-title">Heer 皮膚科醫美</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:0.05em;">히어피부과의원</div>
+        </div>
+      </div>
+      <span class="card-badge" style="background:rgba(233,30,140,0.1);color:#e91e8c;">3/30 · 10:00 · 2位</span>
+    </div>
+
+    <!-- 預約提醒 -->
+    <div style="background:#fff5f9;border:1px solid #ffd0e8;border-radius:4px;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#c0186e;line-height:1.8;">
+      🫶🏻 <strong>3/30 10:00</strong>，2位，當天帶著<strong>護照</strong>到櫃檯報到即可<br>
+      🔺 診所名稱：<strong>Heer</strong>（히어피부과의원）
+    </div>
+
+    <!-- Address -->
+    <div style="background:#fdf5fa;border:1px solid #f5d0e8;border-radius:2px;padding:16px 20px;margin-bottom:16px;">
+      <div style="font-size:10px;letter-spacing:0.25em;color:#e91e8c;margin-bottom:10px;">ADDRESS</div>
+      <div style="font-size:15px;font-weight:500;color:var(--ink);margin-bottom:4px;line-height:1.6;">
+        서울 서초구 서초대로77길 54 10층
+      </div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:8px;">
+        📍 新論峴站 7號出口，看到 Musinsa 往右轉，<strong>海底撈那棟直接上 10 樓</strong>
+      </div>
+      <a class="map-btn" style="color:#e91e8c;border-color:rgba(233,30,140,0.3);"
+         href="https://naver.me/5vc6saQC"
+         target="_blank">→ 在 Naver Map 中開啟</a>
+    </div>
+
+    <!-- 交通 -->
+    <div style="margin-bottom:4px;font-size:10px;letter-spacing:0.25em;color:var(--muted);">🚖 交通方式</div>
+    <div class="bus-steps" style="margin-top:10px;">
+      <div class="bus-step">
+        <div class="step-num" style="background:#e91e8c;">1</div>
+        <div class="step-text">
+          <strong>地鐵（推薦）</strong><br>
+          明洞站 → <strong>4號線</strong> → 銅雀站 → 轉乘 <strong>9號線急行（Express）</strong> → <strong>新論峴站 7號出口</strong><br>
+          看到 Musinsa 往右轉，海底撈那棟直接上 10 樓
+        </div>
+      </div>
+      <div class="bus-step">
+        <div class="step-num" style="background:#e91e8c;">2</div>
+        <div class="step-text">
+          <strong>計程車（備選）</strong><br>
+          出示以下韓文地址給司機：<br>
+          <span style="background:#fff0f8;border:1px solid #f5d0e8;border-radius:2px;padding:2px 8px;font-size:12px;color:#c0186e;display:inline-block;margin-top:4px;">서울 서초구 서초대로77길 54 10층</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<span id="tax-anchor"></span><!-- TAX REFUND SECTION -->
+<div class="section" style="padding-top:var(--space-sm);padding-bottom:0;">
+  <div class="section-label">仁川機場 T2 退稅指南</div>
+  <div class="card" style="border-left-color:#27ae60;">
+    <div class="card-header">
+      <div style="display:flex;align-items:center;">
+        <div class="card-icon" style="background:rgba(39,174,96,0.12);margin-right:12px;">💰</div>
+        <div class="card-title">仁川第二航廈 退稅完整步驟</div>
+      </div>
+      <span class="card-badge green">T2 · 3樓</span>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="bus-steps">
+      <div class="bus-step">
+        <div class="step-num" style="background:#27ae60;">1</div>
+        <div class="step-text">
+          <strong>事前準備（購物時）</strong><br>
+          消費單筆滿 <strong>₩30,000</strong> 即可向店家索取退稅單（Tax Refund Receipt）。單筆退稅額較高時（購買金額約大於 <strong>₩75,000</strong>），需準備好商品供海關檢查，請勿直接托運。
+        </div>
+      </div>
+
+      <div class="bus-step">
+        <div class="step-num" style="background:#27ae60;">2</div>
+        <div class="step-text">
+          <strong>安檢前 — 3樓出境大廳（報到前做）</strong><br>
+          📍 位置：T2 出境大廳 3 樓，<strong>D 與 E 報到櫃檯附近</strong><br><br>
+          ① <strong>自助機（KIOSK）操作：</strong>掃描護照及每一張退稅單<br>
+          ② <strong>海關查驗：</strong>若自助機顯示需查驗，請帶商品至旁邊海關櫃檯蓋章<br>
+          ③ <strong>完成後</strong>再將行李拿去航空公司櫃檯報到 <strong>→ 再托運</strong>
+        </div>
+      </div>
+
+      <div class="bus-step">
+        <div class="step-num" style="background:#27ae60;">3</div>
+        <div class="step-text">
+          <strong>通過安檢與護照查驗</strong><br>
+          帶著退稅文件一起過關，勿放進托運行李。
+        </div>
+      </div>
+
+      <div class="bus-step">
+        <div class="step-num" style="background:#27ae60;">4</div>
+        <div class="step-text">
+          <strong>安檢後（管制區內）— 領取現金退稅</strong><br>
+          📍 位置：3 樓 <strong>249 號或 253 號登機門附近</strong>的退稅機<br>
+          再次掃描護照 → 選擇退回 <strong>韓幣現金</strong> 即可領取
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#f0faf4;border-left:3px solid #27ae60;padding:10px 16px;margin-top:8px;border-radius:0 2px 2px 0;font-size:12px;color:#1a6b3a;line-height:1.8;">
+      💡 <strong>重要順序：</strong>退稅蓋章 → 航空公司報到托運 → 安檢 → 管制區領現金<br>
+      ⚠️ 若先托運再退稅，高額商品無法出示給海關，將無法完成退稅！
+    </div>
+  </div>
+</div>
+
+<span id="emergency-anchor"></span><!-- EMERGENCY CONTACTS -->
+<div class="section" style="padding-top:var(--space-md);">
+  <div class="section-label">緊急聯絡資訊</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;">
+
+    <div class="card" style="border-left-color:#c0392b;margin-bottom:0;">
+      <div style="font-size:10px;letter-spacing:0.2em;color:var(--muted);margin-bottom:8px;">🚨 韓國緊急電話</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#c0392b;line-height:1;">119</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px;">救護車 / 火災</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:#c0392b;line-height:1;margin-top:8px;">112</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px;">警察報案</div>
+    </div>
+
+    <div class="card" style="border-left-color:#2980b9;margin-bottom:0;">
+      <div style="font-size:10px;letter-spacing:0.2em;color:var(--muted);margin-bottom:8px;">🇹🇼 台灣駐韓代表處</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:#2980b9;line-height:1.3;">+82-2-399-2780</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px;line-height:1.7;">
+        上班時間急難救助<br>
+        <strong style="color:var(--ink);">+82-2-399-2767</strong>（24小時）
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:var(--gold);margin-bottom:0;">
+      <div style="font-size:10px;letter-spacing:0.2em;color:var(--muted);margin-bottom:8px;">💳 信用卡掛失</div>
+      <div style="font-size:12px;color:var(--muted);line-height:2;">
+        <strong style="color:var(--ink);">VISA：</strong>+1-303-967-1096<br>
+        <strong style="color:var(--ink);">Mastercard：</strong>+1-636-722-7111<br>
+        <strong style="color:var(--ink);">JCB：</strong>+81-422-40-8122<br>
+        <span style="font-size:11px;">各發卡銀行背面亦有緊急電話</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:#8e44ad;margin-bottom:0;grid-column:1/-1;">
+      <div style="font-size:10px;letter-spacing:0.2em;color:var(--muted);margin-bottom:12px;">🛡️ 旅遊平安險保單</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ink);font-family:'Noto Serif TC',serif;margin-bottom:14px;line-height:1.7;">
+        兆豐產物安心旅行綜合保險（電子商務適用）<br>
+        <span style="font-size:11px;color:var(--muted);font-family:'Noto Sans TC',sans-serif;font-weight:300;">含法定傳染病・海外突發疾病醫療健康保險</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+
+        <!-- 人身安全 -->
+        <div style="background:#fdf5fa;border:1px solid #f0d0e8;border-radius:4px;padding:12px 16px;">
+          <div style="font-size:10px;letter-spacing:0.2em;color:#8e44ad;margin-bottom:8px;">👤 人身安全保障</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;border-bottom:1px dashed #f0d0e8;padding-bottom:5px;">
+              <span style="color:var(--muted);">意外身故/喪葬/失能（AD&D）</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#8e44ad;">800萬</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;">
+              <span style="color:var(--muted);">重大燒燙傷保險金</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#8e44ad;">400萬</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 醫療保障 -->
+        <div style="background:#f5f0fa;border:1px solid #ddd0f0;border-radius:4px;padding:12px 16px;">
+          <div style="font-size:10px;letter-spacing:0.2em;color:#6c3483;margin-bottom:8px;">🏥 醫療保障</div>
+          <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;">
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #ddd0f0;padding-bottom:4px;">
+              <span style="color:var(--muted);">實支實付傷害醫療（MR）</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#6c3483;">80萬</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #ddd0f0;padding-bottom:4px;">
+              <span style="color:var(--muted);">海外突發疾病住院</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#6c3483;">80萬</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #ddd0f0;padding-bottom:4px;">
+              <span style="color:var(--muted);">海外突發疾病門診</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#6c3483;">8,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span style="color:var(--muted);">海外突發疾病急診</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#6c3483;">8,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 旅程保障 -->
+        <div style="background:#f0f5fa;border:1px solid #c8ddf0;border-radius:4px;padding:12px 16px;">
+          <div style="font-size:10px;letter-spacing:0.2em;color:#2980b9;margin-bottom:8px;">✈️ 兆豐產物旅行綜合保險</div>
+          <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;">
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #c8ddf0;padding-bottom:4px;">
+              <span style="color:var(--muted);">旅程取消</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2980b9;">2萬</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #c8ddf0;padding-bottom:4px;">
+              <span style="color:var(--muted);">班機延誤（最多2次）</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2980b9;">2,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #c8ddf0;padding-bottom:4px;">
+              <span style="color:var(--muted);">旅程更改</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2980b9;">1萬</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #c8ddf0;padding-bottom:4px;">
+              <span style="color:var(--muted);">行李延誤</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2980b9;">2,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed #c8ddf0;padding-bottom:4px;">
+              <span style="color:var(--muted);">行李損失（最多2次）</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2980b9;">2,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span style="color:var(--muted);">旅行文件損失</span>
+              <span style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#2980b9;">2,000</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  首爾之旅 2026 · 3/28 — 4/3 · 大韓航空 KE2022 / KE2027
+</footer>
+
+<script>
+  // Scroll-triggered animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.tl-day, .day-card').forEach(el => observer.observe(el));
+
+  // ── Currency converter ──
+  function getRate() {
+    return parseFloat(document.getElementById('rateInput').value) / 1000 || 0.0215;
+  }
+  function calcFX() {
+    const val = parseFloat(document.getElementById('krwInput').value) || 0;
+    const twd = (val * getRate()).toLocaleString('zh-TW', {minimumFractionDigits:0, maximumFractionDigits:1});
+    document.getElementById('twdResult').textContent = 'NT$ ' + twd;
+  }
+  function swapFX() { document.getElementById('krwInput').focus(); }
+  function updateRate() {
+    // recalc converter
+    calcFX();
+    // recalc rate table
+    const r = getRate();
+    document.querySelectorAll('.fx-row[data-krw]').forEach(row => {
+      const krw = parseInt(row.dataset.krw);
+      const twd = (krw * r).toLocaleString('zh-TW', {minimumFractionDigits:0, maximumFractionDigits:1});
+      row.querySelector('.twd').textContent = 'NT$' + twd;
+    });
+    // update rate badge display
+    const el = document.getElementById('rateBadgeDisplay');
+    if(el) el.textContent = '₩1,000 = NT$' + parseFloat(document.getElementById('rateInput').value).toFixed(1);
+  }
+  // Init
+  calcFX();
+
+  // Day tab switching
+  function switchDay(n) {
+    document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.day-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById('day-panel-' + n).classList.add('active');
+    document.querySelectorAll('.day-tab')[n - 1].classList.add('active');
+  }
+</script>
+</body>
+</html>
