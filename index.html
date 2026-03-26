@@ -1214,20 +1214,23 @@ footer {
 <body>
 <!-- NAV MENU -->
 <nav style="background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-  <div style="max-width:960px;margin:0 auto;padding:0 20px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;">
-    <div style="display:inline-flex;gap:0;padding:4px 0;">
-      <a href="#fx-anchor" class="nav-btn">💱 匯率</a>
-      <a href="#lpoint-anchor" class="nav-btn">🪙 樂天會員</a>
-      <a href="#exchange-anchor" class="nav-btn">💴 換錢所</a>
-      <a href="#myeongdong-anchor" class="nav-btn">🏙️ 明洞商圈</a>
-      <a href="#pharmacy-anchor" class="nav-btn">💊 藥局</a>
+  <div style="max-width:960px;margin:0 auto;padding:0 0 0 20px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch;">
+    <style>.nav-scroll::-webkit-scrollbar{display:none}</style>
+    <div class="nav-scroll" style="display:inline-flex;gap:0;padding:4px 30px 4px 0;">
 
-      <a href="#itinerary-anchor" class="nav-btn">📅 行程</a>
-	        <a href="#hotspots-anchor" class="nav-btn">📍 熱門景點</a>
-      <a href="#tips-anchor" class="nav-btn">💡 叮嚀</a>
-      <a href="#clinic-anchor" class="nav-btn">💆 醫美</a>
-      <a href="#tax-anchor" class="nav-btn">🧾 退稅</a>
-      <a href="#emergency-anchor" class="nav-btn">🚨 緊急</a>
+<a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-btn">🇰🇷 Home</a>
+<a href="#fx-anchor" class="nav-btn">💱 匯率</a>
+<a href="#lpoint-anchor" class="nav-btn">🪙 樂天會員</a>
+<a href="#exchange-anchor" class="nav-btn">💵 換錢所</a>
+<a href="#myeongdong-anchor" class="nav-btn">🏙️ 明洞商圈</a>
+<a href="#pharmacy-anchor" class="nav-btn">💊 藥局</a>
+<a href="#itinerary-anchor" class="nav-btn">📅 行程</a>
+<a href="#hotspots-anchor" class="nav-btn">📍 熱門景點</a>
+<a href="#tips-anchor" class="nav-btn">💡叮嚀</a>
+<a href="#clinic-anchor" class="nav-btn">💆 醫美</a>
+<a href="#tax-anchor" class="nav-btn">🧾 退稅</a>
+<a href="#emergency-anchor" class="nav-btn">🚨緊急</a>
+
     </div>
   </div>
 </nav>
