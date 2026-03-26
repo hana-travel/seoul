@@ -1577,13 +1577,67 @@ footer {
     </div>
   </div>
 
+  <!-- Geographic Overview -->
+  <div style="background:linear-gradient(160deg,#16112a,#1e1640);border-radius:4px;padding:clamp(20px,4vw,32px);margin-bottom:20px;">
+    <div style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px;">🗺 七天行程 · 地理分布概覽</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:680px;margin:0 auto;">
+
+      <!-- NW -->
+      <div style="background:rgba(255,154,174,0.1);border:1px solid rgba(255,154,174,0.25);border-radius:4px;padding:14px 16px;">
+        <div style="font-size:9px;letter-spacing:0.16em;color:rgba(255,180,200,0.55);margin-bottom:8px;text-transform:uppercase;">⬅️ 西北區 · 麻浦／弘大／汝矣島</div>
+        <div style="font-size:13px;color:#ff9aae;font-weight:600;margin-bottom:2px;">🌸 Day 2 術前櫻花大滿貫</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;margin-bottom:10px;">新大方→合井→延南洞→弘大</div>
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;font-size:13px;color:#90d0ff;font-weight:600;margin-bottom:2px;">🏢 Day 4 術後極致防曬</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;">The Hyundai → 輪中路夜櫻</div>
+      </div>
+
+      <!-- NE -->
+      <div style="background:rgba(144,208,255,0.08);border:1px solid rgba(144,208,255,0.2);border-radius:4px;padding:14px 16px;">
+        <div style="font-size:9px;letter-spacing:0.16em;color:rgba(180,220,255,0.5);margin-bottom:8px;text-transform:uppercase;">➡️ 東北與東區 · 東大門／聖水</div>
+        <div style="font-size:13px;color:#b0e0ff;font-weight:600;margin-bottom:2px;">🏛️ Day 6 歐風櫻花＋潮流聖地</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.6;">回基慶熙大 → 首爾林 → 聖水洞</div>
+      </div>
+
+      <!-- Center -->
+      <div style="grid-column:1/-1;background:rgba(184,134,11,0.1);border:1px solid rgba(255,210,100,0.2);border-radius:4px;padding:14px 20px;">
+        <div style="font-size:9px;letter-spacing:0.16em;color:rgba(255,210,120,0.5);margin-bottom:10px;text-transform:uppercase;">🎯 中心區 · 大本營</div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;">
+          <div>
+            <div style="font-size:13px;color:#ffd080;font-weight:600;margin-bottom:2px;">🏨 Day 1 · 7 明洞 · 首爾站</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);">明洞海茵娜酒店大本營</div>
+          </div>
+          <div>
+            <div style="font-size:13px;color:#ffb098;font-weight:600;margin-bottom:2px;">🌸 Day 3 傍晚 南山夕陽</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);">N首爾塔 · 南山公園</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SE -->
+      <div style="grid-column:1/-1;background:rgba(233,30,140,0.07);border:1px solid rgba(233,30,140,0.2);border-radius:4px;padding:14px 20px;">
+        <div style="font-size:9px;letter-spacing:0.16em;color:rgba(255,120,180,0.5);margin-bottom:10px;text-transform:uppercase;">⬇️ 東南區 · 江南／瑞草／松坡</div>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;">
+          <div>
+            <div style="font-size:13px;color:#ff80c8;font-weight:600;margin-bottom:2px;">💆 Day 3 上午 醫美</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);">新論峴 Heer 皮膚科</div>
+          </div>
+          <div>
+            <div style="font-size:13px;color:#ff80c8;font-weight:600;margin-bottom:2px;">🌸 Day 5 防曬夜櫻</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.45);">奉恩寺→COEX→樂天塔→石村湖</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Cherry spots overview -->
   <div class="cherry-map">
     <h4>🌸 本次賞櫻地圖</h4>
     <div class="cherry-spots">
       <div class="cherry-spot">
         <div class="cs-day">Day 2</div>
-        <div class="cs-name">首爾林公園 Seoul Forest</div>
+        <div class="cs-name">新大方道林川 · 合井喜雨亭 · 延南洞京義線</div>
         <div class="cs-type">白天</div>
       </div>
       <div class="cherry-spot">
@@ -1598,12 +1652,12 @@ footer {
       </div>
       <div class="cherry-spot">
         <div class="cs-day">Day 5</div>
-        <div class="cs-name">石村湖 蠶室</div>
+        <div class="cs-name">奉恩寺 · 石村湖 蠶室</div>
         <div class="cs-type">夜櫻</div>
       </div>
       <div class="cherry-spot">
         <div class="cs-day">Day 6</div>
-        <div class="cs-name">慶熙大學 和平殿堂</div>
+        <div class="cs-name">慶熙大學 和平殿堂 · 首爾林</div>
         <div class="cs-type">白天</div>
       </div>
     </div>
@@ -1699,84 +1753,120 @@ footer {
 
     <!-- ══ DAY 2 ══ -->
     <div class="day-panel" id="day-panel-2">
-      <div class="day-banner" style="background:linear-gradient(135deg,#1a2e1a,#1e3a2a);">
+      <div class="day-banner" style="background:linear-gradient(135deg,#1a2e1a,#1e3820);">
         <div class="db-left">
           <div class="db-num">02</div>
-          <div class="db-title">聖水洞 · 首爾林 · E-mart</div>
-          <div class="db-sub">3/29 (日) · 術前盡情戶外活動 &nbsp;<span class="weather-badge">🌤️ 20°C / 8°C</span></div>
+          <div class="db-title">西半部櫻花大滿貫 · 弘大</div>
+          <div class="db-sub">3/29 (日) · 術前無防曬壓力，盡情戶外 &nbsp;<span class="weather-badge">🌤️ 20°C / 8°C</span></div>
         </div>
         <div class="db-tags">
-          <span class="db-tag cherry">🌸 賞櫻</span>
-          <span class="db-tag">🛒 採購</span>
+          <span class="db-tag cherry">🌸 全日賞櫻</span>
+          <span class="db-tag">🛒 超市採購</span>
           <span class="db-tag">☀️ 戶外</span>
         </div>
       </div>
-      <div class="note-box"><strong>📌 重點：</strong>3/29 為週日（第五個週日），超市正常營業。術前最後一天盡情戶外活動！</div>
+      <div class="note-box"><strong>📌 重點：</strong>3/29 為週日（第五個週日），超市正常營業。術前最後一天，免防曬壓力盡情戶外！一路向西——新大方→合井→延南洞→弘大，交通順暢不走回頭路。</div>
       <div class="stop-list" style="margin-top:16px;">
 
-        <div class="stop type-cherry">
-          <div class="stop-time">10:00</div>
+        <div class="stop type-transport">
+          <div class="stop-time">09:30</div>
           <div class="stop-body">
-            <div class="stop-name"><span class="s-icon">🌸</span> 首爾林公園 Seoul Forest</div>
-            <div class="stop-desc">
-              <strong>交通選擇：</strong><br>
-              🚕 <strong>計程車（推薦）</strong>：明洞直達，約 20 分鐘，車資約 ₩10,000。兩人分攤只要 150 台幣，省轉車力氣！<br>
-              🚇 地鐵：4號線→東大門歷史文化公園轉2號線→往十里轉水仁盆唐線→首爾林站 3號出口（需轉兩次）
-            </div>
+            <div class="stop-name"><span class="s-icon">🚇</span> 出發：明洞站 → 新大方站</div>
+            <div class="stop-desc">搭乘地鐵 <strong>4 號線</strong>，至東大門歷史文化公園站轉乘 <strong>2 號線</strong>，直達新大方站。</div>
             <div class="stop-meta">
-              <span class="stop-chip duration">⏱ 1.5 小時</span>
-              <span class="stop-chip cost">💴 免費入場</span>
+              <span class="stop-chip transport">🚇 4→2號線 · ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 45 分鐘</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%8B%A0%EB%8C%80%EB%B0%A9%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%8B%A0%EB%8C%80%EB%B0%A9%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%8B%A0%EB%8C%80%EB%B0%A9%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 新大方站</a>
+          </div>
+        </div>
+
+        <div class="stop type-cherry">
+          <div class="stop-time">10:15</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🌸</span> 新大方站路橋 · 道林川賞櫻</div>
+            <div class="stop-desc">出站即是道林川，兩側<strong>櫻花垂柳相映</strong>，非常浪漫。早上觀光客極少，可以輕鬆拍出無人空景。</div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1 小時</span>
+              <span class="stop-chip cost">💴 免費</span>
               <span class="stop-chip tip">🌸 賞櫻點①</span>
             </div>
-            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9C%EC%9A%B8%EC%88%B2&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%8F%84%EB%A6%BC%EC%B2%9C%2B%EB%B2%9A%EA%BD%83" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8F%84%EB%A6%BC%EC%B2%9C%2B%EB%B2%9A%EA%BD%83&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8F%84%EB%A6%BC%EC%B2%9C%2B%EB%B2%9A%EA%BD%83','_blank')},1500);return false;" target="_blank">🗺 道林川 벚꽃</a>
           </div>
         </div>
 
-        <div class="stop type-shop">
-          <div class="stop-time">13:00</div>
+        <div class="stop type-cherry">
+          <div class="stop-time">11:30</div>
           <div class="stop-body">
-            <div class="stop-name"><span class="s-icon">🏙️</span> 聖水洞商圈 午餐 + 逛街</div>
-            <div class="stop-desc">JUUNEEDU、Dior 聖水概念店、特色咖啡廳。首爾最潮的文青街區。</div>
-            <div style="background:#f5f9fd;border:1px solid #c8ddf0;border-radius:4px;padding:12px 14px;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.9;">
-              <strong style="color:var(--ink);font-size:14px;">🛍️ JUUNEEDU 首爾林分店</strong><br>
-              📍 서울 성동구 서울숲2길 8-11<br>
-              🕘 <strong>12:00 – 20:00</strong><br>
-              ☎ 070-8832-7089
-              <a class="stop-naver" style="margin-top:8px;display:inline-flex;" href="https://map.naver.com/v5/search/JUUNEEDU%20%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=JUUNEEDU+서울숲&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/JUUNEEDU+서울숲','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-            </div>
+            <div class="stop-name"><span class="s-icon">🌸</span> 合井：陽花路6街 ＆ 喜雨亭櫻花路</div>
+            <div class="stop-desc">從新大方搭 <strong>2 號線直達合井站</strong>。出站後沿著<strong>陽花路6街</strong>散步，接著慢慢走到麻浦區的<strong>喜雨亭櫻花隧道</strong>。這區是充滿質感氛圍的住宅區，街拍非常有韓國在地感。</div>
             <div class="stop-meta">
-              <span class="stop-chip duration">⏱ 4 小時</span>
-              <span class="stop-chip cost">💴 依個人消費</span>
+              <span class="stop-chip transport">🚇 2號線 합정역</span>
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+              <span class="stop-chip cost">💴 免費</span>
+              <span class="stop-chip tip">🌸 賞櫻點②</span>
             </div>
-            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%96%91%ED%99%94%EB%A1%9C6%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%96%91%ED%99%94%EB%A1%9C6%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%96%91%ED%99%94%EB%A1%9C6%EA%B8%B8','_blank')},1500);return false;" target="_blank">🗺 陽花路6街</a>
+            <a class="stop-naver" style="margin-left:8px;" href="https://map.naver.com/v5/search/%ED%9D%AC%EC%9A%B0%EC%A0%95%EB%A1%9C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%9D%AC%EC%9A%B0%EC%A0%95%EB%A1%9C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%9D%AC%EC%9A%B0%EC%A0%95%EB%A1%9C','_blank')},1500);return false;" target="_blank">🗺 喜雨亭路</a>
           </div>
         </div>
 
-        <div class="stop type-shop">
-          <div class="stop-time">17:00</div>
+        <div class="stop type-food">
+          <div class="stop-time">13:30</div>
           <div class="stop-body">
-            <div class="stop-name"><span class="s-icon">🛒</span> E-mart 往十里店</div>
+            <div class="stop-name"><span class="s-icon">☕</span> 延南洞午餐 ＆ 京義線森林公園賞櫻</div>
             <div class="stop-desc">
-              位於 Bitplex 商場 2/3F。採購<strong>浩肯包、韓國零食、日用品</strong>。<br>
-              🚕 從聖水洞計程車約 2.5km，約 15 分鐘，車資約 ₩6,500（一台車）。
+              從喜雨亭路搭計程車（約 10 分鐘，車資 <strong>₩6,000</strong>）直接抵達延南洞商圈。<br>
+              找一間採光極佳的網美早午餐 / 咖啡廳（<strong>延南洞咖啡廳密度是首爾最高的</strong>）。吃飽後，散步走出店外就是<strong>京義線森林公園</strong>，鐵道兩側的櫻花林非常壯觀。
             </div>
             <div class="stop-meta">
-              <span class="stop-chip transport">🚇 2號線 往十里站</span>
+              <span class="stop-chip transport">🚕 計程車 · 約 ₩6,000</span>
+              <span class="stop-chip duration">⏱ 2.5 小時</span>
+              <span class="stop-chip tip">🌸 賞櫻點③</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%97%B0%EB%82%A8%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%97%B0%EB%82%A8%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%97%B0%EB%82%A8%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 延南洞</a>
+            <a class="stop-naver" style="margin-left:8px;" href="https://map.naver.com/v5/search/%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8','_blank')},1500);return false;" target="_blank">🗺 京義線森林公園</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">16:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🛍️</span> 弘大商圈逛街</div>
+            <div class="stop-desc">順著京義線公園往下走，直接接到<strong>弘大主商圈</strong>。可以買衣服、飾品、拍人生四格照。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚶 步行可達</span>
               <span class="stop-chip duration">⏱ 2 小時</span>
               <span class="stop-chip cost">💴 依個人消費</span>
             </div>
-            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%99%95%EC%8B%AD%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%99%95%EC%8B%AD%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%99%95%EC%8B%AD%EB%A6%AC','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EB%8C%80%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">🗺 弘大거리</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">18:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🛒</span> 超市採購：Homeplus 合井店 或 E-mart 新村店</div>
+            <div class="stop-desc">
+              今天是第五個週日，超市<strong>正常營業</strong>！不用跑回東邊的往十里——直接在合井的 <strong>Homeplus</strong>，或搭一站地鐵到新村的 <strong>E-mart</strong>，一樣可以買齊浩肯包和韓國零食。結帳完直接搭計程車把戰利品扛回明洞飯店 🛍️
+            </div>
+            <div class="stop-meta">
+              <span class="stop-chip duration">⏱ 1.5 小時</span>
+              <span class="stop-chip cost">💴 依個人消費</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4%2B%ED%95%A9%EC%A0%95%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4%2B%ED%95%A9%EC%A0%95%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4%2B%ED%95%A9%EC%A0%95%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Homeplus 합정점</a>
+            <a class="stop-naver" style="margin-left:8px;" href="https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%8B%A0%EC%B4%8C%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%8B%A0%EC%B4%8C%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B4%EB%A7%88%ED%8A%B8%2B%EC%8B%A0%EC%B4%8C%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 E-mart 신촌점</a>
           </div>
         </div>
 
         <div class="stop type-transport">
-          <div class="stop-time">19:20</div>
+          <div class="stop-time">20:00</div>
           <div class="stop-body">
             <div class="stop-name"><span class="s-icon">🚕</span> 返回明洞飯店</div>
-            <div class="stop-desc">戰利品多建議搭計程車；若還走得動可搭地鐵 2號線→4號線。</div>
+            <div class="stop-desc">戰利品多，強烈建議搭計程車直達明洞飯店。</div>
             <div class="stop-meta">
-              <span class="stop-chip transport">🚕 計程車約 ₩12,000</span>
-              <span class="stop-chip duration">⏱ 30 分鐘</span>
+              <span class="stop-chip transport">🚕 計程車約 ₩10,000–13,000</span>
+              <span class="stop-chip duration">⏱ 20–30 分鐘</span>
             </div>
           </div>
         </div>
@@ -1999,6 +2089,7 @@ footer {
             </div>
             <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
           </div>
+        </div>
         <div class="stop type-indoor">
           <div class="stop-time">10:00</div>
           <div class="stop-body">
@@ -2077,8 +2168,8 @@ footer {
       <div class="day-banner" style="background:linear-gradient(135deg,#1a2a1a,#253825);">
         <div class="db-left">
           <div class="db-num">06</div>
-          <div class="db-title">歐風校園賞櫻 · 益善洞</div>
-          <div class="db-sub">4/2 (四) · 地鐵 1號線串連行程 &nbsp;<span class="weather-badge">☀️ 21°C / 7°C</span></div>
+          <div class="db-title">歐風校園賞櫻 · 首爾林 · 聖水洞</div>
+          <div class="db-sub">4/2 (四) · 地鐵串連行程：回基 → 首爾林 → 聖水 → 首爾站 &nbsp;<span class="weather-badge">☀️ 21°C / 7°C</span></div>
         </div>
         <div class="db-tags">
           <span class="db-tag cherry">🌸 白天賞櫻</span>
@@ -2137,34 +2228,50 @@ footer {
           </div>
         </div>
 
-        <div class="stop type-shop">
-          <div class="stop-time">14:00</div>
+        <div class="stop type-transport">
+          <div class="stop-time">12:30</div>
           <div class="stop-body">
-            <div class="stop-name"><span class="s-icon">🏘️</span> 益善洞韓屋村 下午茶 + 逛街</div>
-            <div class="stop-desc">回基站直搭 1號線 → 鍾路3街，平路巷弄逛起來輕鬆。韓屋咖啡廳、韓式小吃、文創雜貨。</div>
+            <div class="stop-name"><span class="s-icon">🚇</span> 極速移動：回基站 → 首爾林站</div>
+            <div class="stop-desc">回到回基站，搭乘<strong>水仁盆唐線（往南）</strong>，只需 <strong>3 站</strong>直達「首爾林站（Seoul Forest）」。</div>
             <div class="stop-meta">
-              <span class="stop-chip transport">🚇 1號線 回基→鍾路3街 · ₩1,400</span>
-              <span class="stop-chip duration">⏱ 2.5 小時</span>
+              <span class="stop-chip transport">🚇 水仁盆唐線 · ₩1,400/人</span>
+              <span class="stop-chip duration">⏱ 20 分鐘</span>
             </div>
-            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-          </div>
-        </div>
-        <div class="stop type-shop">
-          <div class="stop-time">16:00</div>
-          <div class="stop-body">
-            <div class="stop-name"><span class="s-icon">🏘️</span> 昌德宮街</div>
-            <div class="stop-desc">從益善洞往北步行約 5-10 分鐘即可抵達。沿著古老石牆的櫻花小徑非常出片。。</div>
-
-            <a class="stop-naver" href="" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B5%EC%84%A0%EB%8F%99%2B%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9C%EC%9A%B8%EC%88%B2%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 首爾林站</a>
           </div>
         </div>
 
-        <div class="stop type-shop">
-          <div class="stop-time">20:00</div>
+        <div class="stop type-cherry">
+          <div class="stop-time">13:00</div>
           <div class="stop-body">
-            <div class="stop-name"><span class="s-icon">🛒</span> 樂天超市 首爾站</div>
+            <div class="stop-name"><span class="s-icon">🌸</span> 首爾林公園賞櫻 ＆ 聖水洞商圈午餐</div>
             <div class="stop-desc">
-              回基站（1號線）→ 益善洞（鍾路3街）→ 首爾站，完全順路，倒數第二天採購最即時！<br>
+              出站後先買杯咖啡，到<strong>首爾林公園</strong>散步賞櫻（這裡的櫻花林非常茂密）。<br>
+              接著步行進入<strong>聖水洞商圈</strong>：滿滿的網美餐廳、文青選物店（如 JUUNEEDU）、以及著名的 <strong>Dior 聖水概念店</strong>可以拍照打卡。
+            </div>
+            <div style="background:#f5f9fd;border:1px solid #c8ddf0;border-radius:4px;padding:12px 14px;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.9;">
+              <strong style="color:var(--ink);font-size:14px;">🛍️ JUUNEEDU 首爾林分店</strong><br>
+              📍 서울 성동구 서울숲2길 8-11<br>
+              🕘 <strong>12:00 – 20:00</strong> &nbsp;·&nbsp; ☎ 070-8832-7089
+              <br>
+              <a class="stop-naver" style="margin-top:8px;display:inline-flex;" href="https://map.naver.com/v5/search/JUUNEEDU%20%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=JUUNEEDU+서울숲&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/JUUNEEDU+서울숲','_blank')},1500);return false;" target="_blank">🗺 JUUNEEDU</a>
+            </div>
+            <div class="stop-meta" style="margin-top:10px;">
+              <span class="stop-chip duration">⏱ 4 小時</span>
+              <span class="stop-chip cost">💴 依個人消費</span>
+              <span class="stop-chip tip">🌸 賞櫻點⑥</span>
+            </div>
+            <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9C%EC%9A%B8%EC%88%B2&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2','_blank')},1500);return false;" target="_blank">🗺 首爾林公園</a>
+            <a class="stop-naver" style="margin-left:8px;" href="https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">🗺 聖水洞카페거리</a>
+          </div>
+        </div>
+
+        <div class="stop type-shop">
+          <div class="stop-time">17:30</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🛒</span> 樂天超市 首爾站 · 最終大採購</div>
+            <div class="stop-desc">
+              從聖水站搭 <strong>2號線</strong> → 市廳站 轉 <strong>1號線</strong> → 首爾站。倒數第二天採購最即時！<br>
               結帳時可即時退稅、支援 L.POINT 折扣，2F 客服中心可兌換贈品（購物滿 ₩100,000）。樂天超市營業到很晚（通常到晚上 12 點）
             </div>
 
@@ -2180,12 +2287,24 @@ footer {
             </div>
 
             <div class="stop-meta" style="margin-top:10px;">
-              <span class="stop-chip transport">🚇 1號線 首爾站</span>
+              <span class="stop-chip transport">🚇 2→1號線 首爾站</span>
               <span class="stop-chip duration">⏱ 2 小時</span>
               <span class="stop-chip tip">🧾 結帳即時退稅</span>
               <span class="stop-chip cost">💳 L.POINT 折扣</span>
             </div>
             <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+        </div>
+
+        <div class="stop type-transport">
+          <div class="stop-time">20:00</div>
+          <div class="stop-body">
+            <div class="stop-name"><span class="s-icon">🚕</span> 返回大本營：首爾站 → 明洞飯店</div>
+            <div class="stop-desc">買完戰利品，直接搭計程車（車程極短）或地鐵 4號線回明洞飯店休息。</div>
+            <div class="stop-meta">
+              <span class="stop-chip transport">🚕 計程車約 ₩5,000 / 🚇 4號線 1站</span>
+              <span class="stop-chip duration">⏱ 10–15 分鐘</span>
+            </div>
           </div>
         </div>
 
@@ -2515,6 +2634,160 @@ footer {
           <li>建議包包在前胸方向揹</li>
           <li>貴重物品分開存放</li>
         </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Naver Map 必備清單 ── -->
+  <div style="margin-top:48px;">
+    <div class="section-label" style="margin-bottom:24px;">🗺 Naver Map 必備清單 · 中韓文對照</div>
+    <div style="background:#f0faf4;border:1px solid #c0e8d0;border-radius:4px;padding:12px 18px;margin-bottom:20px;font-size:13px;color:#1a5a30;line-height:1.7;">
+      💡 直接複製以下<strong>韓文名稱</strong>，貼到 Naver Map 搜尋欄即可精準定位。點選各景點按鈕可直接開啟地圖。
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;">
+
+      <!-- Day 1 & 7 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:2px;padding:16px 18px;">
+        <div style="font-size:10px;letter-spacing:0.25em;color:var(--gold);margin-bottom:12px;text-transform:uppercase;">🏨 Day 1, 7 · 大本營與機場</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">仁川機場 第2航廈</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%2B%EC%A0%9C2%ED%84%B0%EB%AF%B8%EB%84%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%2B%EC%A0%9C2%ED%84%B0%EB%AF%B8%EB%84%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%2B%EC%A0%9C2%ED%84%B0%EB%AF%B8%EB%84%90','_blank')},1500);return false;" target="_blank">인천공항 제2터미널</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">首爾明洞海茵娜酒店</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%ED%97%A8%EB%82%98%ED%98%B8%ED%85%94%2B%EC%84%9C%EC%9A%B8%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%97%A8%EB%82%98%ED%98%B8%ED%85%94+%EC%84%9C%EC%9A%B8%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%97%A8%EB%82%98%ED%98%B8%ED%85%94+%EC%84%9C%EC%9A%B8%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">헨나호텔 서울명동</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">Daiso 明洞站旗艦店</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8B%A4%EC%9D%B4%EC%86%8C+%EB%AA%85%EB%8F%99%EC%97%AD%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C+%EB%AA%85%EB%8F%99%EC%97%AD%EC%A0%90','_blank')},1500);return false;" target="_blank">다이소 명동역점</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:var(--muted);">Olive Young 明洞TOWN店</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%2B%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81+%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81+%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90','_blank')},1500);return false;" target="_blank">올리브영 명동타운점</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #27ae60;border-radius:2px;padding:16px 18px;">
+        <div style="font-size:10px;letter-spacing:0.25em;color:#27ae60;margin-bottom:12px;text-transform:uppercase;">🌸 Day 2 · 西半部櫻花大滿貫</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">新大方站 道林川賞櫻</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%8B%A0%EB%8C%80%EB%B0%A9%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%8B%A0%EB%8C%80%EB%B0%A9%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%8B%A0%EB%8C%80%EB%B0%A9%EC%97%AD','_blank')},1500);return false;" target="_blank">신대방역</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">陽花路6街 合井站</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%96%91%ED%99%94%EB%A1%9C6%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%96%91%ED%99%94%EB%A1%9C6%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%96%91%ED%99%94%EB%A1%9C6%EA%B8%B8','_blank')},1500);return false;" target="_blank">양화로6길</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">喜雨亭櫻花路 望遠洞</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%ED%9D%AC%EC%9A%B0%EC%A0%95%EB%A1%9C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%9D%AC%EC%9A%B0%EC%A0%95%EB%A1%9C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%9D%AC%EC%9A%B0%EC%A0%95%EB%A1%9C','_blank')},1500);return false;" target="_blank">희우정로</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">京義線森林公園</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B2%BD%EC%9D%98%EC%84%A0%EC%88%B2%EA%B8%B8','_blank')},1500);return false;" target="_blank">경의선숲길</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">延南洞 咖啡廳街</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%97%B0%EB%82%A8%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%97%B0%EB%82%A8%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%97%B0%EB%82%A8%EB%8F%99','_blank')},1500);return false;" target="_blank">연남동</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">弘大商圈</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EB%8C%80%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">홍대거리</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:var(--muted);">Homeplus 合井店</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4%2B%ED%95%A9%EC%A0%95%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4+%ED%95%A9%EC%A0%95%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%88%ED%94%8C%EB%9F%AC%EC%8A%A4+%ED%95%A9%EC%A0%95%EC%A0%90','_blank')},1500);return false;" target="_blank">홈플러스 합정점</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e91e8c;border-radius:2px;padding:16px 18px;">
+        <div style="font-size:10px;letter-spacing:0.25em;color:#e91e8c;margin-bottom:12px;text-transform:uppercase;">💆 Day 3 · 醫美 ＆ 南山夕陽</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">Heer 皮膚科醫美</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://naver.me/5vc6saQC" target="_blank">히어피부과의원</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">漢南洞咖啡廳街</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%95%9C%EB%82%A8%EB%8F%99+%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99+%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">한남동 카페거리</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:var(--muted);">N首爾塔 南山公園</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/N%EC%84%9C%EC%9A%B8%ED%83%80%EC%9B%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=N서울타워&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/N서울타워','_blank')},1500);return false;" target="_blank">N서울타워 (남산공원)</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2980b9;border-radius:2px;padding:16px 18px;">
+        <div style="font-size:10px;letter-spacing:0.25em;color:#2980b9;margin-bottom:12px;text-transform:uppercase;">🏢 Day 4 · 術後防曬 ＆ 汝矣島夜櫻</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">The Hyundai 汝矣島</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EB%8D%94%ED%98%84%EB%8C%80%2B%EC%84%9C%EC%9A%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8D%94%ED%98%84%EB%8C%80+%EC%84%9C%EC%9A%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8D%94%ED%98%84%EB%8C%80+%EC%84%9C%EC%9A%B8','_blank')},1500);return false;" target="_blank">더현대 서울</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:var(--muted);">汝矣島 輪中路夜櫻</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84%2B%EC%9C%A4%EC%A4%91%EB%A1%9C%2B%EB%B2%9A%EA%BD%83%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%97%AC%EC%9D%98%EB%8F%84+%EC%9C%A4%EC%A4%91%EB%A1%9C+%EB%B2%9A%EA%BD%83%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84+%EC%9C%A4%EC%A4%91%EB%A1%9C+%EB%B2%9A%EA%BD%83%EA%B8%B8','_blank')},1500);return false;" target="_blank">여의도 윤중로 벚꽃길</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #8e44ad;border-radius:2px;padding:16px 18px;">
+        <div style="font-size:10px;letter-spacing:0.25em;color:#8e44ad;margin-bottom:12px;text-transform:uppercase;">🌙 Day 5 · 古寺 ＆ 湖畔夜櫻</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">奉恩寺</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EB%B4%89%EC%9D%80%EC%82%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%B4%89%EC%9D%80%EC%82%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%B4%89%EC%9D%80%EC%82%AC','_blank')},1500);return false;" target="_blank">봉은사</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">星空圖書館 COEX</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%B3%84%EB%A7%88%EB%8B%B9%EB%8F%84%EC%84%9C%EA%B4%80','_blank')},1500);return false;" target="_blank">별마당도서관</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">樂天世界塔</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%ED%83%80%EC%9B%8C','_blank')},1500);return false;" target="_blank">롯데월드타워</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">松里團路 晚餐</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%86%A1%EB%A6%AC%EB%8B%A8%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%86%A1%EB%A6%AC%EB%8B%A8%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%86%A1%EB%A6%AC%EB%8B%A8%EA%B8%B8','_blank')},1500);return false;" target="_blank">송리단길</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:var(--muted);">石村湖 環湖夜櫻</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98','_blank')},1500);return false;" target="_blank">석촌호수</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #27ae60;border-radius:2px;padding:16px 18px;">
+        <div style="font-size:10px;letter-spacing:0.25em;color:#27ae60;margin-bottom:12px;text-transform:uppercase;">🏛️ Day 6 · 歐風校園 ＆ 聖水洞</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">慶熙大學 和平殿堂</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90%2B%ED%8F%89%ED%99%94%EC%9D%98%EC%A0%84%EB%8B%B9" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90+%ED%8F%89%ED%99%94%EC%9D%98%EC%A0%84%EB%8B%B9&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B2%BD%ED%9D%AC%EB%8C%80%ED%95%99%EA%B5%90+%ED%8F%89%ED%99%94%EC%9D%98%EC%A0%84%EB%8B%B9','_blank')},1500);return false;" target="_blank">경희대학교 평화의전당</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">首爾林公園</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%9C%EC%9A%B8%EC%88%B2&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%EC%88%B2','_blank')},1500);return false;" target="_blank">서울숲</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--border);padding-bottom:7px;">
+            <span style="color:var(--muted);">聖水洞 咖啡街</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99%2B%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%84%B1%EC%88%98%EB%8F%99+%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%84%B1%EC%88%98%EB%8F%99+%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC','_blank')},1500);return false;" target="_blank">성수동 카페거리</a>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:var(--muted);">樂天超市 首爾站店</span>
+            <a class="stop-naver" style="margin-top:0;" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8%2B%EC%84%9C%EC%9A%B8%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8+%EC%84%9C%EC%9A%B8%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A7%88%ED%8A%B8+%EC%84%9C%EC%9A%B8%EC%97%AD','_blank')},1500);return false;" target="_blank">롯데마트 서울역점</a>
+          </div>
+        </div>
       </div>
 
     </div>
