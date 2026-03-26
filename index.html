@@ -1577,12 +1577,21 @@ footer {
     </div>
   </div>
 
-  <!-- Geographic Overview -->
-  img {
-  max-width: 100%;
-  height: auto;
-}
-<img src="https://raw.githubusercontent.com/hana-travel/seoul/main/2026seoul.jpg?v=1.1">
+<style>
+  /* 確保所有行程圖都能在手機上正常顯示 */
+  .itinerary-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* 加點圓角會讓網頁質感更好 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 增加一點陰影，讓地圖更有層次感 */
+    display: block;
+    margin: 20px auto; /* 讓圖片置中並與文字保持距離 */
+  }
+</style>
+
+<img src="https://raw.githubusercontent.com/hana-travel/seoul/main/2026seoul.jpg?v=1.1" 
+     alt="2026首爾旅遊地理概覽" 
+     class="itinerary-img">
 
   <!-- Cherry spots overview -->
   <div class="cherry-map">
