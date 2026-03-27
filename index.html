@@ -1202,35 +1202,245 @@ footer {
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
-.nav-btn:hover {
+.nav-btn:hover, .nav-btn:active {
   color: #c0392b;
   border-bottom-color: #c0392b;
 }
 @media (max-width: 480px) {
   .nav-btn { padding: 10px 11px; font-size: 12px; }
 }
+
+/* ── BOTTOM NAV (mobile) ── */
+#bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+#bottom-nav-bar {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 8px;
+}
+/* hamburger toggle button */
+#nav-toggle {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 5px;
+  background: none; border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+#nav-toggle:active { background: rgba(192,57,43,0.08); }
+#nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+#nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+#nav-toggle-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-left: 2px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+/* quick-access scrollable strip */
+#nav-quick {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  align-items: center;
+}
+#nav-quick::-webkit-scrollbar { display: none; }
+.nav-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  margin-right: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.nav-quick-btn:active {
+  background: rgba(192,57,43,0.08);
+  border-color: #c0392b;
+  color: #c0392b;
+}
+/* slide-up drawer */
+#nav-drawer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 190;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 32px rgba(0,0,0,0.14);
+  padding: 12px 16px 0;
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+  max-height: 80svh;
+  overflow-y: auto;
+}
+#nav-drawer.open {
+  transform: translateY(0);
+}
+#nav-drawer-handle {
+  width: 36px; height: 4px;
+  background: #e0ddd8;
+  border-radius: 2px;
+  margin: 0 auto 14px;
+}
+#nav-drawer-title {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.drawer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding-bottom: 8px;
+}
+.drawer-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 6px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #faf9f5;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  text-align: center;
+  line-height: 1.4;
+}
+.drawer-link .dl-icon { font-size: 20px; line-height: 1; }
+.drawer-link:active {
+  background: rgba(192,57,43,0.06);
+  border-color: #c0392b;
+  color: #c0392b;
+}
+/* overlay */
+#nav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 180;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#nav-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* body padding so content isn't hidden behind bottom nav */
+body {
+  padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+}
 </style>
 </head>
 <body>
-<!-- NAV MENU -->
-<nav style="background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-  <div style="max-width:960px;margin:0 auto;padding:0 0 0 20px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch;">
-    <style>.nav-scroll::-webkit-scrollbar{display:none}</style>
-    <div class="nav-scroll" style="display:inline-flex;gap:0;padding:4px 30px 4px 0;">
+<!-- 選單 NAV MENU — bottom nav -->
+<!-- Overlay -->
+<div id="nav-overlay" onclick="closeNav()"></div>
 
-<a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-btn">🇰🇷 Home</a>
-<a href="#fx-anchor" class="nav-btn">💱 匯率</a>
-<a href="#lpoint-anchor" class="nav-btn">🪙 樂天會員</a>
-<a href="#exchange-anchor" class="nav-btn">💵 換錢所</a>
-<a href="#myeongdong-anchor" class="nav-btn">🏙️ 明洞商圈</a>
-<a href="#pharmacy-anchor" class="nav-btn">💊 藥局</a>
-<a href="#itinerary-anchor" class="nav-btn">📅 行程</a>
-<a href="#hotspots-anchor" class="nav-btn">📍 熱門景點</a>
-<a href="#tips-anchor" class="nav-btn">💡叮嚀</a>
-<a href="#clinic-anchor" class="nav-btn">💆 醫美</a>
-<a href="#tax-anchor" class="nav-btn">🧾 退稅</a>
-<a href="#emergency-anchor" class="nav-btn">🚨緊急</a>
+<!-- Slide-up Drawer -->
+<div id="nav-drawer">
+  <div id="nav-drawer-handle"></div>
+  <div id="nav-drawer-title">快速導覽</div>
+  <div class="drawer-links">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});closeNav();return false;" class="drawer-link">
+      <span class="dl-icon">🇰🇷</span>Home
+    </a>
+    <a href="#fx-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">💱</span>匯率
+    </a>
+    <a href="#lpoint-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">🪙</span>樂天會員
+    </a>
+    <a href="#itinerary-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">📅</span>行程
+    </a>
+    <a href="#hotspots-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">📍</span>熱門景點
+    </a>
+    <a href="#exchange-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">💵</span>換錢所
+    </a>
+    <a href="#myeongdong-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">🏙️</span>明洞商圈
+    </a>
+    <a href="#pharmacy-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">💊</span>藥局
+    </a>
+    <a href="#clinic-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">💆</span>醫美
+    </a>
+    <a href="#tips-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">💡</span>叮嚀
+    </a>
+    <a href="#tax-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">🧾</span>退稅
+    </a>
+    <a href="#emergency-anchor" class="drawer-link" onclick="closeNav()">
+      <span class="dl-icon">🚨</span>緊急
+    </a>
+  </div>
+</div>
 
+<!-- Bottom Nav Bar -->
+<nav id="bottom-nav">
+  <div id="bottom-nav-bar">
+    <button id="nav-toggle" onclick="toggleNav()" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <span id="nav-toggle-label">選單</span>
+    <div id="nav-quick">
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="nav-quick-btn">🇰🇷 Home</a>
+      <a href="#itinerary-anchor" class="nav-quick-btn">📅 行程</a>
+      <a href="#fx-anchor" class="nav-quick-btn">💱 匯率</a>
+      <a href="#hotspots-anchor" class="nav-quick-btn">📍 景點</a>
+      <a href="#clinic-anchor" class="nav-quick-btn">💆 醫美</a>
+      <a href="#pharmacy-anchor" class="nav-quick-btn">💊 藥局</a>
+      <a href="#myeongdong-anchor" class="nav-quick-btn">🏙️ 明洞</a>
+      <a href="#tax-anchor" class="nav-quick-btn">🧾 退稅</a>
+      <a href="#emergency-anchor" class="nav-quick-btn">🚨 緊急</a>
     </div>
   </div>
 </nav>
@@ -1417,148 +1627,6 @@ footer {
       </div>
     </div>
   </div>
-  </div>
-  <span id="exchange-anchor"></span><!-- 明洞換錢所 standalone -->
-  <div style="margin-top:32px;">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">💱 明洞換錢所</div>
-      <div style="flex:1;height:1px;background:var(--border);"></div>
-    </div>
-      <!-- Currency Exchange -->
-      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2980b9;border-radius:2px;padding:16px 18px;">
-        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">💱 明洞換錢所</div>
-        <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">三家集中同一區，建議到場比較匯率再換，需出示護照 &nbsp;·&nbsp; 明洞站 5號出口出站，往前直走遇 CU 便利商店後右轉，步行約 3–5 分鐘</div>
-
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:12px;">
-
-          <div style="background:#f5f9fd;border:1px solid #c8ddf0;border-radius:4px;padding:12px 14px;">
-            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 大使館</div>
-            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
-              📍 서울중구명동2길26<br>
-              🕘 09:00 – <strong>21:50</strong><br>
-              <span style="font-size:12px;">（最晚關門）</span>
-            </div>
-            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-          </div>
-
-          <div style="background:#f0faf4;border:1px solid #b8e8cc;border-radius:4px;padding:12px 14px;position:relative;">
-            <div style="position:absolute;top:-1px;right:8px;background:#27ae60;color:#fff;font-size:12px;padding:2px 8px;border-radius:0 0 4px 4px;letter-spacing:0.05em;">✅推薦</div>
-            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 一品香</div>
-            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
-              📍 서울중구남대문로52-13 B1<br>
-              🕘 平日21:00/假日20:30<br>
-              ⚠️ 室內禁止拍照
-            </div>
-            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-          </div>
-
-          <div style="background:#fafafa;border:1px solid var(--border);border-radius:4px;padding:12px 14px;">
-            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 大信</div>
-            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
-              📍 서울중구명동2가105<br>
-              🕘 09:00 – 21:00<br>
-              <span style="font-size:12px;">（大使館隔壁）</span>
-            </div>
-            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-          </div>
-
-        </div>
-
-        <div style="background:#fffbf0;border-left:3px solid var(--gold);padding:8px 12px;margin-top:12px;border-radius:0 4px 4px 0;font-size:14px;color:#7a6000;line-height:1.8;">
-          💡 三家匯率常常一樣，多走幾步比一下再換！換錢需出示<strong>護照</strong>，換完請<strong>當場點清鈔票</strong>
-        </div>
-      </div>
-
-
-  </div>
-
-  <span id="myeongdong-anchor"></span><!-- 明洞商圈 -->
-  <div style="margin-top:32px;">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">🏙️ 明洞商圈逛街指南</div>
-      <div style="flex:1;height:1px;background:var(--border);"></div>
-      <div style="font-size:13px;color:var(--muted);white-space:nowrap;">住明洞晚間隨時可逛</div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
-
-      <!-- Daiso -->
-      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e74c3c;border-radius:2px;padding:16px 18px;">
-        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🛒 Daiso 明洞站旗艦店</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
-          📍 明洞站 1號出口旁<br>
-          💊 旅行小物・保濕面膜・日用品補貨首選
-        </div>
-        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-      </div>
-
-      <!-- Olive Young -->
-      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #03c75a;border-radius:2px;padding:16px 18px;">
-        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🧴 Olive Young 明洞TOWN店</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
-          올리브영 명동타운점（舊 明洞總店）<br>
-          📍 서울특별시 중구 명동길 53 1～2F<br>
-          🚇 2號線 乙支路入口站 <strong>6號出口</strong> 步行5分<br>
-          🚇 4號線 明洞站 <strong>8號出口</strong> 步行6分
-        </div>
-        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-      </div>
-
-      <!-- Lotte Duty Free -->
-      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:2px;padding:16px 18px;">
-        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🏬 明洞樂天免稅店 本店</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
-          롯데면세점 명동 본점<br>
-          📍 서울 중구 을지로 30（9至12樓）<br>
-          🕘 <strong>09:30 – 20:00</strong><br>
-          💡 1樓 LOTTE Tourist（GUCCI旁）辦樂天會員卡，記得帶護照
-        </div>
-        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-      </div>
-
-    </div>
-  </div>
-
-  <span id="pharmacy-anchor"></span><!-- 藥局資訊 -->
-  <div style="margin-top:28px;">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">💊 藥局資訊</div>
-      <div style="flex:1;height:1px;background:var(--border);"></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
-
-      <!-- 明洞Myeong藥局 -->
-      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e74c3c;border-radius:2px;padding:16px 18px;">
-        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:8px;">💊 明洞Myeong藥局</div>
-        <div style="font-size:13px;font-weight:400;color:var(--muted);margin-bottom:8px;">명동명약국</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
-          📍 首爾特別市中區南大門路7街11102號<br>
-          🕘 每日 <strong>09:30 – 21:30</strong>
-        </div>
-        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-      </div>
-
-      <!-- 弘益藥局 -->
-      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #27ae60;border-radius:2px;padding:16px 18px;position:relative;">
-        <div style="position:absolute;top:-1px;right:10px;background:#27ae60;color:#fff;font-size:12px;padding:2px 10px;border-radius:0 0 4px 4px;letter-spacing:0.05em;">365天全年無休</div>
-        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:4px;">💊 弘益藥局</div>
-        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Hongik Pharmacy</div>
-        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
-          📍 Seoul, Mapo-gu, Yanghwa-ro 18-gil, 7 1층<br>
-          🕘 每日 <strong>09:00 – 23:30</strong>（開到很晚！超級貼心 🙌）<br>
-          ☎ <strong>02-337-5414</strong><br>
-          🚇 弘大站 <strong>8號出口</strong> 步行 1 分鐘
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
-          <span style="font-size:13px;padding:3px 8px;background:rgba(39,174,96,0.1);color:#27ae60;border-radius:3px;">🗣️ 中文服務</span>
-          <span style="font-size:13px;padding:3px 8px;background:rgba(41,128,185,0.1);color:#2980b9;border-radius:3px;">🧾 即時退稅</span>
-          <span style="font-size:13px;padding:3px 8px;background:rgba(142,68,173,0.1);color:#8e44ad;border-radius:3px;">💳 WOWPASS</span>
-        </div>
-        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
-      </div>
-
-    </div>
   </div>
 
 
@@ -2434,8 +2502,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#c0392b;margin-bottom:6px;">HONGDAE · 弘大</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">弘大商圈</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">2號線</strong> 弘益大學站<br>
-        📍 出口：<strong style="color:var(--ink);">9號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">2號線</strong> 弘益大學站
+        📍 出口：<strong style="color:var(--ink);">9號出口</strong>
         🔤 Hongik Univ.（弘益大學）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2447,8 +2515,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#e91e8c;margin-bottom:6px;">MYEONGDONG · 明洞</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">明洞商圈</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">4號線</strong> 明洞站<br>
-        📍 出口：<strong style="color:var(--ink);">7號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">4號線</strong> 明洞站
+        📍 出口：<strong style="color:var(--ink);">7號出口</strong>
         🔤 Euljiro（乙支路）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2460,8 +2528,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#8e44ad;margin-bottom:6px;">ITAEWON · 梨泰院</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">梨泰院商圈</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">4號線</strong> 梨泰院站<br>
-        📍 出口：<strong style="color:var(--ink);">1 / 2號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">4號線</strong> 梨泰院站
+        📍 出口：<strong style="color:var(--ink);">1 / 2號出口</strong>
         🔤 Itaewon（梨泰院）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%9D%B4%ED%83%9C%EC%9B%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B4%ED%83%9C%EC%9B%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B4%ED%83%9C%EC%9B%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2473,8 +2541,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#2980b9;margin-bottom:6px;">HANNAM · 漢南洞</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">漢南洞商圈</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">6號線</strong> 漢江鎮站<br>
-        📍 出口：<strong style="color:var(--ink);">3號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">6號線</strong> 漢江鎮站
+        📍 出口：<strong style="color:var(--ink);">3號出口</strong>
         🔤 Hangangjin（漢江鎮）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%95%9C%EB%82%A8%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2486,8 +2554,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#27ae60;margin-bottom:6px;">YEOUIDO · 汝矣島</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">汝矣島現代百貨</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 汝矣島站<br>
-        📍 看到 <strong style="color:var(--ink);">IFC 標誌</strong>後直行<br>
+        🚇 <strong style="color:var(--ink);">3號線</strong> 汝矣島站
+        📍 看到 <strong style="color:var(--ink);">IFC 標誌</strong>後直行
         🔤 Yeouido（汝矣島）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2499,8 +2567,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#b8860b;margin-bottom:6px;">APGUJEONG · 狎鷗亭</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">狎鷗亭</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 狎鷗亭站<br>
-        📍 出口：<strong style="color:var(--ink);">漢江鎮 3號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">3號線</strong> 狎鷗亭站
+        📍 出口：<strong style="color:var(--ink);">漢江鎮 3號出口</strong>
         🔤 Apgujeong（狎鷗亭）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%95%95%EA%B5%AC%EC%A0%95" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%95%95%EA%B5%AC%EC%A0%95&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%95%95%EA%B5%AC%EC%A0%95','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2512,8 +2580,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#16a085;margin-bottom:6px;">SINSA · 新沙洞</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">新沙洞林蔭道</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 狎鷗亭站<br>
-        📍 出口：<strong style="color:var(--ink);">3號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">3號線</strong> 狎鷗亭站
+        📍 出口：<strong style="color:var(--ink);">3號出口</strong>
         🔤 Sinsa（新沙）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2525,8 +2593,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#2c3e50;margin-bottom:6px;">GANGNAM · 江南</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">江南地區</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">2號線</strong> 江南站<br>
-        📍 直接出站即到達<br>
+        🚇 <strong style="color:var(--ink);">2號線</strong> 江南站
+        📍 直接出站即到達
         🔤 Gangnam（江南）
       </div>
       <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EA%B0%95%EB%82%A8%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B0%95%EB%82%A8%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B0%95%EB%82%A8%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
@@ -2538,8 +2606,8 @@ footer {
       <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#2980b9;margin-bottom:6px;">GYEONGBOKGUNG · 景福宮</div>
       <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">景福宮</div>
       <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 景福宮站 <br>
-        📍 出口：<strong style="color:var(--ink);">5號出口</strong><br>
+        🚇 <strong style="color:var(--ink);">3號線</strong> 景福宮站 
+        📍 出口：<strong style="color:var(--ink);">5號出口</strong>
         🔤 Gyeongbokgung（景福宮）鐘路區（Jongno-gu）「首爾中心區」
       </div>
       <div style="margin-top:10px;font-size:12px;background:#f0f5ff;border-left:3px solid #2980b9;padding:8px 12px;border-radius:0 4px 4px 0;color:#1a4a7a;line-height:1.9;">
@@ -2556,62 +2624,7 @@ footer {
 </div>
   </div><!-- /day tabs -->
 
-  <span id="tips-anchor"></span><!-- TIPS SECTION -->
-  <div style="margin-top:16px;">
-    <div class="section-label">旅遊小叮嚀</div>
-    <div class="tips-grid">
-
-      <div class="tips-card">
-        <h4>🚕 地鐵 vs 計程車</h4>
-        <ul>
-          <li>轉乘超過 1 次 → <strong>搭計程車</strong></li>
-          <li>走路超過 15 分 → <strong>搭計程車</strong></li>
-          <li>3 個最值得搭：明洞→首爾林 / 聖水→E-mart / 醫美→南山</li>
-          <li>合計約 <strong>₩25,000</strong>，省 1.5 小時</li>
-        </ul>
-      </div>
-
-      <div class="tips-card">
-        <h4>🩹 醫美術後防曬</h4>
-        <ul>
-          <li>Day 4–5 全天室內行程</li>
-          <li>物理性防曬 + <strong>帽子、陽傘必備</strong></li>
-          <li>韓國春天超乾燥，保濕面膜備足</li>
-          <li>Day 1 Daiso / Olive Young 買齊</li>
-        </ul>
-      </div>
-
-      <div class="tips-card">
-        <h4>🌸 賞櫻天氣備案</h4>
-        <ul>
-          <li>下雨時汝矣島 & 石村湖行程↔ 可與 The Hyundai / 樂天塔 互換</li>
-          <li>3月底–4月初為首爾櫻花滿開預測期</li>
-        </ul>
-      </div>
-
-      <div class="tips-card">
-        <h4>💳 T-money 卡</h4>
-        <ul>
-          <li>每人卡內保持 <strong>₩20,000+</strong></li>
-          <li>計程車也可直接刷 T-money</li>
-          <li>仁川機場 T2 入境後即可購買/儲值</li>
-          <li>建議初次儲值 ₩30,000</li>
-        </ul>
-      </div>
-
-
-      <div class="tips-card">
-        <h4>⚠️ 安全注意</h4>
-        <ul>
-          <li>汝矣島 & 石村湖夜櫻人潮極多</li>
-          <li>請隨時注意<strong>隨身財物</strong></li>
-          <li>建議包包在前胸方向揹</li>
-          <li>貴重物品分開存放</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
+ 
 
   <!-- ── Naver Map 必備清單 ── -->
   <div style="margin-top:48px;">
@@ -2770,8 +2783,149 @@ footer {
 </div><!-- /itin-wrap -->
 </div><!-- /itinerary bg -->
 
+  <span id="exchange-anchor"></span><!-- 明洞換錢所 standalone -->
+  <div style="margin-top:32px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">💱 明洞換錢所</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+    </div>
+      <!-- Currency Exchange -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2980b9;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">💱 明洞換錢所</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">三家集中同一區，建議到場比較匯率再換，需出示護照 &nbsp;·&nbsp; 明洞站 5號出口出站，往前直走遇 CU 便利商店後右轉，步行約 3–5 分鐘</div>
 
-<span id="clinic-anchor"></span><!-- CLINIC SECTION -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:12px;">
+
+          <div style="background:#f5f9fd;border:1px solid #c8ddf0;border-radius:4px;padding:12px 14px;">
+            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 大使館</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
+              📍 서울중구명동2길26<br>
+              🕘 09:00 – <strong>21:50</strong><br>
+              <span style="font-size:12px;">（最晚關門）</span>
+            </div>
+            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%82%AC%EA%B4%80%EC%95%9E%ED%99%98%EC%A0%84','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+
+          <div style="background:#f0faf4;border:1px solid #b8e8cc;border-radius:4px;padding:12px 14px;position:relative;">
+            <div style="position:absolute;top:-1px;right:8px;background:#27ae60;color:#fff;font-size:12px;padding:2px 8px;border-radius:0 0 4px 4px;letter-spacing:0.05em;">✅推薦</div>
+            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 一品香</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
+              📍 서울중구남대문로52-13 B1<br>
+              🕘 平日21:00/假日20:30<br>
+              ⚠️ 室內禁止拍照
+            </div>
+            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%BC%ED%92%88%ED%96%A5%ED%99%98%EC%A0%84%EC%86%8C','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+
+          <div style="background:#fafafa;border:1px solid var(--border);border-radius:4px;padding:12px 14px;">
+            <div style="font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;">🏦 大信</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.9;">
+              📍 서울중구명동2가105<br>
+              🕘 09:00 – 21:00<br>
+              <span style="font-size:12px;">（大使館隔壁）</span>
+            </div>
+            <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%8B%A0%ED%99%98%EC%A0%84%EC%86%8C%20%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+          </div>
+
+        </div>
+
+        <div style="background:#fffbf0;border-left:3px solid var(--gold);padding:8px 12px;margin-top:12px;border-radius:0 4px 4px 0;font-size:14px;color:#7a6000;line-height:1.8;">
+          💡 三家匯率常常一樣，多走幾步比一下再換！換錢需出示<strong>護照</strong>，換完請<strong>當場點清鈔票</strong>
+        </div>
+      </div>
+
+
+  </div>
+
+  <span id="myeongdong-anchor"></span><!-- 明洞商圈 -->
+  <div style="margin-top:32px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">🏙️ 明洞商圈逛街指南</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+      <div style="font-size:13px;color:var(--muted);white-space:nowrap;">住明洞晚間隨時可逛</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+
+      <!-- Daiso -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e74c3c;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🛒 Daiso 明洞站旗艦店</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          📍 明洞站 1號出口旁<br>
+          💊 旅行小物・保濕面膜・日用品補貨首選
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%86%8C%2B%EB%AA%85%EB%8F%99%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+      <!-- Olive Young -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #03c75a;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🧴 Olive Young 明洞TOWN店</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          올리브영 명동타운점（舊 明洞總店）<br>
+          📍 서울특별시 중구 명동길 53 1～2F<br>
+          🚇 2號線 乙支路入口站 <strong>6號出口</strong> 步行5分<br>
+          🚇 4號線 明洞站 <strong>8號出口</strong> 步行6分
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+      <!-- Lotte Duty Free -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:6px;">🏬 明洞樂天免稅店 本店</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          롯데면세점 명동 본점<br>
+          📍 서울 중구 을지로 30（9至12樓）<br>
+          🕘 <strong>09:30 – 20:00</strong><br>
+          💡 1樓 LOTTE Tourist（GUCCI旁）辦樂天會員卡，記得帶護照
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EB%A9%B4%EC%84%B8%EC%A0%90%20%EB%AA%85%EB%8F%99%20%EB%B3%B8%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+    </div>
+  </div>
+
+  <span id="pharmacy-anchor"></span><!-- 藥局資訊 -->
+  <div style="margin-top:28px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);">💊 藥局資訊</div>
+      <div style="flex:1;height:1px;background:var(--border);"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+
+      <!-- 明洞Myeong藥局 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e74c3c;border-radius:2px;padding:16px 18px;">
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:8px;">💊 明洞Myeong藥局</div>
+        <div style="font-size:13px;font-weight:400;color:var(--muted);margin-bottom:8px;">명동명약국</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          📍 首爾特別市中區南大門路7街11102號<br>
+          🕘 每日 <strong>09:30 – 21:30</strong>
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99%EB%AA%85%EC%95%BD%EA%B5%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+      <!-- 弘益藥局 -->
+      <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #27ae60;border-radius:2px;padding:16px 18px;position:relative;">
+        <div style="position:absolute;top:-1px;right:10px;background:#27ae60;color:#fff;font-size:12px;padding:2px 10px;border-radius:0 0 4px 4px;letter-spacing:0.05em;">365天全年無休</div>
+        <div style="font-weight:700;font-size:17px;color:var(--ink);margin-bottom:4px;">💊 弘益藥局</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">Hongik Pharmacy</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.9;">
+          📍 Seoul, Mapo-gu, Yanghwa-ro 18-gil, 7 1층<br>
+          🕘 每日 <strong>09:00 – 23:30</strong>（開到很晚！超級貼心 🙌）<br>
+          ☎ <strong>02-337-5414</strong><br>
+          🚇 弘大站 <strong>8號出口</strong> 步行 1 分鐘
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;">
+          <span style="font-size:13px;padding:3px 8px;background:rgba(39,174,96,0.1);color:#27ae60;border-radius:3px;">🗣️ 中文服務</span>
+          <span style="font-size:13px;padding:3px 8px;background:rgba(41,128,185,0.1);color:#2980b9;border-radius:3px;">🧾 即時退稅</span>
+          <span style="font-size:13px;padding:3px 8px;background:rgba(142,68,173,0.1);color:#8e44ad;border-radius:3px;">💳 WOWPASS</span>
+        </div>
+        <a class="stop-naver" style="margin-top:10px;" href="https://map.naver.com/v5/search/%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EC%9D%B5%EC%95%BD%EA%B5%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      </div>
+
+    </div>
+  </div>
+ <span id="clinic-anchor"></span><!-- CLINIC SECTION -->
 <div class="section" style="padding-top:0;">
   <div class="section-label">醫美診所資訊</div>
 
@@ -2828,8 +2982,64 @@ footer {
       </div>
     </div>
   </div>
-</div>
+</div> 
+  
+ <span id="tips-anchor"></span><!-- TIPS SECTION -->
+  <div style="margin-top:16px;">
+    <div class="section-label">旅遊小叮嚀</div>
+    <div class="tips-grid">
 
+      <div class="tips-card">
+        <h4>🚕 地鐵 vs 計程車</h4>
+        <ul>
+          <li>轉乘超過 1 次 → <strong>搭計程車</strong></li>
+          <li>走路超過 15 分 → <strong>搭計程車</strong></li>
+          <li>3 個最值得搭：明洞→首爾林 / 聖水→E-mart / 醫美→南山</li>
+          <li>合計約 <strong>₩25,000</strong>，省 1.5 小時</li>
+        </ul>
+      </div>
+
+      <div class="tips-card">
+        <h4>🩹 醫美術後防曬</h4>
+        <ul>
+          <li>Day 4–5 全天室內行程</li>
+          <li>物理性防曬 + <strong>帽子、陽傘必備</strong></li>
+          <li>韓國春天超乾燥，保濕面膜備足</li>
+          <li>Day 1 Daiso / Olive Young 買齊</li>
+        </ul>
+      </div>
+
+      <div class="tips-card">
+        <h4>🌸 賞櫻天氣備案</h4>
+        <ul>
+          <li>下雨時汝矣島 & 石村湖行程↔ 可與 The Hyundai / 樂天塔 互換</li>
+          <li>3月底–4月初為首爾櫻花滿開預測期</li>
+        </ul>
+      </div>
+
+      <div class="tips-card">
+        <h4>💳 T-money 卡</h4>
+        <ul>
+          <li>每人卡內保持 <strong>₩20,000+</strong></li>
+          <li>計程車也可直接刷 T-money</li>
+          <li>仁川機場 T2 入境後即可購買/儲值</li>
+          <li>建議初次儲值 ₩30,000</li>
+        </ul>
+      </div>
+
+
+      <div class="tips-card">
+        <h4>⚠️ 安全注意</h4>
+        <ul>
+          <li>汝矣島 & 石村湖夜櫻人潮極多</li>
+          <li>請隨時注意<strong>隨身財物</strong></li>
+          <li>建議包包在前胸方向揹</li>
+          <li>貴重物品分開存放</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 <span id="tax-anchor"></span><!-- TAX REFUND SECTION -->
 <div class="section" style="padding-top:var(--space-sm);padding-bottom:0;">
   <div class="section-label">仁川機場 T2 退稅指南</div>
@@ -3047,6 +3257,23 @@ footer {
   }
   // Init
   calcFX();
+
+  // ── Bottom nav drawer ──
+  function toggleNav() {
+    const drawer = document.getElementById('nav-drawer');
+    const overlay = document.getElementById('nav-overlay');
+    const toggle = document.getElementById('nav-toggle');
+    const open = drawer.classList.toggle('open');
+    overlay.classList.toggle('open', open);
+    toggle.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeNav() {
+    document.getElementById('nav-drawer').classList.remove('open');
+    document.getElementById('nav-overlay').classList.remove('open');
+    document.getElementById('nav-toggle').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
   // Day tab switching
   function switchDay(n) {
