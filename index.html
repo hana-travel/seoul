@@ -2490,142 +2490,208 @@ body {
     </div>
   </div>
 </div>
-<!-- ════════════════════════════════════════════
-     HOT SPOTS
-════════════════════════════════════════════ -->
 <span id="hotspots-anchor"></span>
-<div class="section" style="padding-top:var(--space-lg);">
-  <div class="section-label">韓國熱門景點打卡懶人包</div>
+<div class="section" style="padding: var(--space-lg) 10px; max-width: 1200px; margin: 0 auto;">
+  <div class="section-label" style="margin-bottom: 20px; font-weight: bold;">韓國熱門景點打卡懶人包</div>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px;margin-top:2px;">
+  <style>
+    .hotspots-grid {
+      display: grid;
+      /* 使用 auto-fill 搭配 minmax，確保在小螢幕自動折行 */
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
 
-    <!-- ① 弘大 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #c0392b;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(192,57,43,0.08);line-height:1;">①</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#c0392b;margin-bottom:6px;">HONGDAE · 弘大</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">弘大商圈</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">2號線</strong> 弘益大學站
-        📍 出口：<strong style="color:var(--ink);">9號出口</strong>
-        🔤 Hongik Univ.（弘益大學）
+    .spot-card {
+      background: var(--card, #fff);
+      border: 1px solid var(--border, #eee);
+      border-radius: 4px;
+      padding: 18px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .spot-number {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .spot-english {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      margin-bottom: 4px;
+    }
+
+    .spot-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink, #333);
+      margin-bottom: 12px;
+    }
+
+    .spot-info {
+      font-size: 13px;
+      color: var(--muted, #666);
+      line-height: 1.8;
+      flex-grow: 1;
+    }
+
+    /* 特別處理第 9 張景福宮卡片：在寬螢幕時佔據兩欄位 */
+    @media (min-width: 992px) {
+      .spot-card.wide-card {
+        grid-column: span 2;
+      }
+    }
+
+    .tips-box {
+      margin-top: 12px;
+      font-size: 12.5px;
+      background: #f0f5ff;
+      border-left: 3px solid #2980b9;
+      padding: 10px 14px;
+      border-radius: 4px;
+      color: #1a4a7a;
+      line-height: 1.6;
+    }
+
+    .stop-naver {
+      display: inline-flex;
+      margin-top: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #2db400;
+      font-size: 13px;
+      align-items: center;
+    }
+  </style>
+
+  <div class="hotspots-grid">
+
+    <div class="spot-card" style="border-left: 4px solid #c0392b;">
+      <div class="spot-number" style="color:#c0392b;">①</div>
+      <div class="spot-english" style="color:#c0392b;">HONGDAE · 弘大</div>
+      <div class="spot-name">弘大商圈</div>
+      <div class="spot-info">
+        🚇 <strong>2號線</strong> 弘益大學站<br>
+        📍 出口：<strong>9號出口</strong><br>
+        🔤 Hongik Univ.
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ② 明洞 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #e91e8c;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(233,30,140,0.08);line-height:1;">②</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#e91e8c;margin-bottom:6px;">MYEONGDONG · 明洞</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">明洞商圈</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">4號線</strong> 明洞站
-        📍 出口：<strong style="color:var(--ink);">7號出口</strong>
-        🔤 Euljiro（乙支路）
+    <div class="spot-card" style="border-left: 4px solid #e91e8c;">
+      <div class="spot-number" style="color:#e91e8c;">②</div>
+      <div class="spot-english" style="color:#e91e8c;">MYEONGDONG · 明洞</div>
+      <div class="spot-name">明洞商圈</div>
+      <div class="spot-info">
+        🚇 <strong>4號線</strong> 明洞站<br>
+        📍 出口：<strong>7號出口</strong><br>
+        🔤 Myeong-dong
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EB%AA%85%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EB%AA%85%EB%8F%99" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ③ 梨泰院 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #8e44ad;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(142,68,173,0.08);line-height:1;">③</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#8e44ad;margin-bottom:6px;">ITAEWON · 梨泰院</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">梨泰院商圈</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">4號線</strong> 梨泰院站
-        📍 出口：<strong style="color:var(--ink);">1 / 2號出口</strong>
-        🔤 Itaewon（梨泰院）
+    <div class="spot-card" style="border-left: 4px solid #8e44ad;">
+      <div class="spot-number" style="color:#8e44ad;">③</div>
+      <div class="spot-english" style="color:#8e44ad;">ITAEWON · 梨泰院</div>
+      <div class="spot-name">梨泰院商圈</div>
+      <div class="spot-info">
+        🚇 <strong>6號線</strong> 梨泰院站<br>
+        📍 出口：<strong>1 / 2號出口</strong><br>
+        🔤 Itaewon
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%9D%B4%ED%83%9C%EC%9B%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%9D%B4%ED%83%9C%EC%9B%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%9D%B4%ED%83%9C%EC%9B%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%9D%B4%ED%83%9C%EC%9B%90" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ④ 漢南洞 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2980b9;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(41,128,185,0.08);line-height:1;">④</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#2980b9;margin-bottom:6px;">HANNAM · 漢南洞</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">漢南洞商圈</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">6號線</strong> 漢江鎮站
-        📍 出口：<strong style="color:var(--ink);">3號出口</strong>
-        🔤 Hangangjin（漢江鎮）
+    <div class="spot-card" style="border-left: 4px solid #2980b9;">
+      <div class="spot-number" style="color:#2980b9;">④</div>
+      <div class="spot-english" style="color:#2980b9;">HANNAM · 漢南洞</div>
+      <div class="spot-name">漢南洞商圈</div>
+      <div class="spot-info">
+        🚇 <strong>6號線</strong> 漢江鎮站<br>
+        📍 出口：<strong>3號出口</strong><br>
+        🔤 Hangangjin
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99" onclick="var a=document.createElement('a');a.href='nmap://search?query=%ED%95%9C%EB%82%A8%EB%8F%99&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%ED%95%9C%EB%82%A8%EB%8F%99" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ⑤ 汝矣島現代百貨 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #27ae60;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(39,174,96,0.08);line-height:1;">⑤</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#27ae60;margin-bottom:6px;">YEOUIDO · 汝矣島</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">汝矣島現代百貨</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 汝矣島站
-        📍 看到 <strong style="color:var(--ink);">IFC 標誌</strong>後直行
-        🔤 Yeouido（汝矣島）
+    <div class="spot-card" style="border-left: 4px solid #27ae60;">
+      <div class="spot-number" style="color:#27ae60;">⑤</div>
+      <div class="spot-english" style="color:#27ae60;">YEOUIDO · 汝矣島</div>
+      <div class="spot-name">汝矣島現代百貨</div>
+      <div class="spot-info">
+        🚇 <strong>5/9號線</strong> 汝矣島站<br>
+        📍 走地下連通道往 <strong>IFC/Hyundai</strong><br>
+        🔤 The Hyundai Seoul
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%97%AC%EC%9D%98%EB%8F%84+%ED%98%84%EB%8C%80%EB%B0%B1%ED%99%94%EC%A0%90" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ⑥ 狎鷗亭 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #b8860b;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(184,134,11,0.08);line-height:1;">⑥</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#b8860b;margin-bottom:6px;">APGUJEONG · 狎鷗亭</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">狎鷗亭</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 狎鷗亭站
-        📍 出口：<strong style="color:var(--ink);">漢江鎮 3號出口</strong>
-        🔤 Apgujeong（狎鷗亭）
+    <div class="spot-card" style="border-left: 4px solid #b8860b;">
+      <div class="spot-number" style="color:#b8860b;">⑥</div>
+      <div class="spot-english" style="color:#b8860b;">APGUJEONG · 狎鷗亭</div>
+      <div class="spot-name">狎鷗亭</div>
+      <div class="spot-info">
+        🚇 <strong>3號線</strong> 狎鷗亭站<br>
+        📍 出口：<strong>2 / 3號出口</strong><br>
+        🔤 Apgujeong
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%95%95%EA%B5%AC%EC%A0%95" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%95%95%EA%B5%AC%EC%A0%95&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%95%95%EA%B5%AC%EC%A0%95','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%95%95%EA%B5%AC%EC%A0%95" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ⑦ 新沙洞 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #16a085;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(22,160,133,0.08);line-height:1;">⑦</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#16a085;margin-bottom:6px;">SINSA · 新沙洞</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">新沙洞林蔭道</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 狎鷗亭站
-        📍 出口：<strong style="color:var(--ink);">3號出口</strong>
-        🔤 Sinsa（新沙）
+    <div class="spot-card" style="border-left: 4px solid #16a085;">
+      <div class="spot-number" style="color:#16a085;">⑦</div>
+      <div class="spot-english" style="color:#16a085;">SINSA · 新沙洞</div>
+      <div class="spot-name">新沙洞林蔭道</div>
+      <div class="spot-info">
+        🚇 <strong>3號線 / 新盆唐線</strong> 新沙站<br>
+        📍 出口：<strong>8號出口</strong><br>
+        🔤 Sinsa-dong Garosu-gil
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EC%8B%A0%EC%82%AC%EB%8F%99+%EA%B0%80%EB%A1%9C%EC%88%98%EA%B8%B8" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ⑧ 江南 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2c3e50;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(44,62,80,0.08);line-height:1;">⑧</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#2c3e50;margin-bottom:6px;">GANGNAM · 江南</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">江南地區</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">2號線</strong> 江南站
-        📍 直接出站即到達
-        🔤 Gangnam（江南）
+    <div class="spot-card" style="border-left: 4px solid #2c3e50;">
+      <div class="spot-number" style="color:#2c3e50;">⑧</div>
+      <div class="spot-english" style="color:#2c3e50;">GANGNAM · 江南</div>
+      <div class="spot-name">江南地區</div>
+      <div class="spot-info">
+        🚇 <strong>2號線 / 新盆唐線</strong> 江南站<br>
+        📍 出口：<strong>10 / 11號出口</strong><br>
+        🔤 Gangnam
       </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EA%B0%95%EB%82%A8%EC%97%AD" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B0%95%EB%82%A8%EC%97%AD&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B0%95%EB%82%A8%EC%97%AD','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EA%B0%95%EB%82%A8%EC%97%AD" target="_blank">🗺 Naver Map</a>
     </div>
 
-    <!-- ⑩ 景福宮 -->
-    <div style="background:var(--card);border:1px solid var(--border);border-left:4px solid #2980b9;border-radius:2px;padding:16px 18px;position:relative;">
-      <div style="position:absolute;top:12px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:36px;color:rgba(41,128,185,0.08);line-height:1;">⑨</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.2em;color:#2980b9;margin-bottom:6px;">GYEONGBOKGUNG · 景福宮</div>
-      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;">景福宮</div>
-      <div style="font-size:13px;color:var(--muted);line-height:2.1;">
-        🚇 <strong style="color:var(--ink);">3號線</strong> 景福宮站 
-        📍 出口：<strong style="color:var(--ink);">5號出口</strong>
-        🔤 Gyeongbokgung（景福宮）鐘路區（Jongno-gu）「首爾中心區」
+    <div class="spot-card wide-card" style="border-left: 4px solid #2980b9;">
+      <div class="spot-number" style="color:#2980b9;">⑨</div>
+      <div class="spot-english" style="color:#2980b9;">GYEONGBOKGUNG · 景福宮</div>
+      <div class="spot-name">景福宮聚落</div>
+      <div class="spot-info">
+        🚇 <strong>3號線</strong> 景福宮站 <strong>5號出口</strong><br>
+        🔤 Gyeongbokgung / Seochon / Samcheong-dong
+        <div class="tips-box">
+          <strong>💡 徒步完美路線：</strong><br>
+          1. <strong>西村 (西側)</strong>：3號出口出，充滿老韓屋文青咖啡廳與書店。<br>
+          2. <strong>青瓦台</strong>：3號出口步行約 1 公里。<br>
+          3. <strong>三清洞 (東側)</strong>：沿石牆路散步，藝廊與大型景觀咖啡廳聚集地。
+        </div>
       </div>
-      <div style="margin-top:10px;font-size:12px;background:#f0f5ff;border-left:3px solid #2980b9;padding:8px 12px;border-radius:0 4px 4px 0;color:#1a4a7a;line-height:1.9;">
-        💡 想去青瓦台請從 <strong>3號出口</strong>出，步行約 1 公里。西村櫻花路 (夜櫻)：搭地鐵到景福宮站（就在隔壁）。西村的夜晚打上燈光後，櫻花配上周邊的質感選物店與傳統市場，別有一番文青風情。「景福宮聚落」景福宮站、西村、三清洞這三個點，是非常經典且完美的徒步順遊路線！
-
-景福宮站：位於正中央，是你的起點。<br>
-西村（景福宮西側）：從景福宮站出來往左走。這裡保留了許多老韓屋，現在開滿了文青咖啡廳和獨立書店，氣氛靜謐。
-三清洞（景福宮東側）：從西村穿過景福宮（或沿著外牆走）就能到東側的三清洞。這裡有石牆路、藝廊和漂亮的大型咖啡廳。
-      </div>
-      <a class="stop-naver" style="margin-top:8px;" href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B3%B5%EA%B6%81" onclick="var a=document.createElement('a');a.href='nmap://search?query=%EA%B2%BD%EB%B3%B5%EA%B6%81&appname=kr.co.naver.map';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){window.open('https://map.naver.com/v5/search/%EA%B2%BD%EB%B3%B5%EA%B6%81','_blank')},1500);return false;" target="_blank">🗺 Naver Map</a>
+      <a class="stop-naver" href="https://map.naver.com/v5/search/%EA%B2%BD%EB%B3%B5%EA%B6%81" target="_blank">🗺 Naver Map</a>
     </div>
 
   </div>
 </div>
-  </div><!-- /day tabs -->
 
  
 
