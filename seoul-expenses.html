@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🇰🇷 首爾七天六夜記帳</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --red:    #C94F3A;
+    --red2:   #E8736A;
+    --cream:  #FDF8F2;
+    --cream2: #F5EDE0;
+    --border: #F0EBE3;
+    --text:   #2D1F0F;
+    --muted:  #B09070;
+    --card-shadow: 0 2px 12px rgba(80,40,20,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    background: linear-gradient(160deg, var(--cream) 0%, var(--cream2) 100%);
+    min-height: 100vh;
+    color: var(--text);
+  }
+  .wrap { max-width: 480px; margin: 0 auto; padding-bottom: 56px; }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red2) 100%);
+    padding: 28px 20px 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .header-title { font-size: 22px; font-weight: 800; margin-bottom: 2px; }
+  .header-sub   { font-size: 13px; opacity: .85; margin-bottom: 16px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-box {
+    background: rgba(255,255,255,0.18);
+    border-radius: 12px; padding: 12px 14px;
+  }
+  .stat-box.sm { background: rgba(255,255,255,0.12); padding: 10px 14px; }
+  .stat-label { font-size: 11px; opacity: .8; margin-bottom: 3px; }
+  .stat-val   { font-size: 20px; font-weight: 800; }
+  .stat-val.sm{ font-size: 15px; font-weight: 700; }
+
+  /* ── Rate bar ── */
+  .rate-bar {
+    font-size: 11px; color: var(--muted);
+    padding: 8px 16px;
+    background: #FFF9F4;
+    border-bottom: 1px solid #F0E8DF;
+  }
+
+  /* ── Tab bar ── */
+  .tab-bar { display: flex; padding: 12px 16px 8px; gap: 8px; }
+  .tab-btn {
+    flex: 1; padding: 9px 0; border-radius: 10px;
+    border: none; cursor: pointer;
+    font-weight: 600; font-size: 13px;
+    font-family: inherit;
+    transition: background .2s, color .2s;
+  }
+  .tab-btn.active { background: var(--red); color: #fff; }
+  .tab-btn:not(.active) { background: #F0E8DF; color: #8A6040; }
+
+  /* ── Cards ── */
+  .cards { padding: 0 16px; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border);
+  }
+  .card-header {
+    width: 100%; display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: none; border: none; cursor: pointer;
+    text-align: left;
+  }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: #FDF5EE;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 20px;
+  }
+  .card-meta { flex: 1; }
+  .card-title-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .card-title { font-weight: 700; font-size: 15px; color: var(--text); }
+  .card-badge {
+    font-size: 11px; color: var(--muted);
+    background: #FDF5EE; border-radius: 6px; padding: 2px 7px;
+  }
+  .card-count { font-size: 11px; color: #9B7E5A; margin-top: 2px; }
+  .card-total { text-align: right; }
+  .card-total-ntd { font-weight: 800; font-size: 16px; color: var(--red); }
+  .card-total-won { font-size: 11px; color: var(--muted); }
+  .card-arrow { color: #C9A882; font-size: 12px; }
+
+  /* items */
+  .card-body { display: none; }
+  .card-body.open { display: block; }
+  .item-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 16px;
+    border-bottom: 1px solid #FAF5F0;
+  }
+  .item-row:last-of-type { border-bottom: none; }
+  .cat-tag {
+    font-size: 11px; border-radius: 6px; padding: 2px 7px;
+    flex-shrink: 0; font-weight: 600;
+  }
+  .item-name { flex: 1; font-size: 13px; color: #3D2810; }
+  .card-tag {
+    margin-left: 5px; font-size: 10px; color: #5B8BD4;
+    background: #EFF5FF; border-radius: 5px; padding: 1px 5px; font-weight: 600;
+  }
+  .item-amounts { text-align: right; flex-shrink: 0; }
+  .item-ntd { font-size: 13px; font-weight: 700; color: #2D1F0F; }
+  .item-won { font-size: 10px; color: #C9A882; }
+  .subtotal-row {
+    display: flex; justify-content: flex-end;
+    padding: 10px 16px 4px;
+    border-top: 1px dashed var(--border);
+    gap: 8px; align-items: center;
+  }
+  .subtotal-label { font-size: 12px; color: var(--muted); }
+  .subtotal-val   { font-weight: 800; font-size: 16px; color: var(--red); }
+
+  /* ── Summary tab ── */
+  .summary-card {
+    background: #fff; border-radius: 16px; padding: 16px;
+    border: 1px solid var(--border); box-shadow: var(--card-shadow); margin-bottom: 12px;
+  }
+  .summary-title { font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 12px; }
+  .bar-row { margin-bottom: 10px; }
+  .bar-label-row {
+    display: flex; justify-content: space-between; margin-bottom: 4px;
+  }
+  .bar-label { font-size: 12px; color: #5A3A1A; font-weight: 600; }
+  .bar-val   { font-size: 12px; font-weight: 700; }
+  .bar-track { height: 6px; background: #F5EDE4; border-radius: 99px; }
+  .bar-fill  { height: 100%; border-radius: 99px; }
+
+  /* dark summary card */
+  .dark-card {
+    background: linear-gradient(135deg, #2D1F0F, #5A3A1A);
+    border-radius: 16px; padding: 16px; color: #fff; margin-bottom: 12px;
+  }
+  .dark-card-label { font-size: 13px; opacity: .7; margin-bottom: 10px; }
+  .dark-row {
+    display: flex; justify-content: space-between;
+    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .dark-row span:first-child { font-size: 13px; opacity: .85; }
+  .dark-row span:last-child  { font-size: 13px; font-weight: 700; }
+  .dark-total {
+    display: flex; justify-content: space-between;
+    padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 4px;
+  }
+  .dark-total span:first-child { font-size: 14px; font-weight: 700; }
+  .dark-total span:last-child  { font-size: 18px; font-weight: 800; color: #FFD4A0; }
+  .dark-sub {
+    display: flex; justify-content: space-between; padding-top: 6px;
+  }
+  .dark-sub span:first-child { font-size: 12px; opacity: .6; }
+  .dark-sub span:last-child  { font-size: 14px; font-weight: 700; color: #FFD4A0; }
+
+  /* tab panels */
+  .panel { display: none; }
+  .panel.active { display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header (values filled by JS) -->
+  <div class="header">
+    <div class="header-title">🇰🇷 首爾七天六夜記帳</div>
+    <div class="header-sub">2025.03.28 — 04.03 · 明洞出發</div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-label">旅費總計（含行前）</div>
+        <div class="stat-val" id="h-grand"></div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">扣除醫美後</div>
+        <div class="stat-val" id="h-nonmed"></div>
+      </div>
+      <div class="stat-box sm">
+        <div class="stat-label" style="opacity:.7">當地消費（7天）</div>
+        <div class="stat-val sm" id="h-days"></div>
+      </div>
+      <div class="stat-box sm">
+        <div class="stat-label" style="opacity:.7">行前固定費用</div>
+        <div class="stat-val sm" id="h-fixed"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rate-bar">💱 現金匯率 NT$1 = ₩46.75 ／ 刷卡依帳單台幣計</div>
+
+  <!-- Tabs -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('days', this)">📅 每日明細</button>
+    <button class="tab-btn"        onclick="switchTab('summary', this)">📊 分類總結</button>
+  </div>
+
+  <div class="cards">
+    <div id="panel-days"    class="panel active"></div>
+    <div id="panel-summary" class="panel"></div>
+  </div>
+
+</div>
+
+<script>
+// ── Data ────────────────────────────────────────────────────────────────────
+const RATE = 46.75;
+const w = won => Math.round(won / RATE);
+
+const fixedItems = [
+  { name:"機票",      cat:"行前費用", won:null, ntd:9824 },
+  { name:"機票改名",  cat:"行前費用", won:null, ntd:550  },
+  { name:"飯店（6晚）",cat:"行前費用",won:null, ntd:10891},
+  { name:"送機",      cat:"行前費用", won:null, ntd:695  },
+  { name:"接機",      cat:"行前費用", won:null, ntd:690  },
+  { name:"eSIM",      cat:"行前費用", won:null, ntd:310  },
+  { name:"韓國巴士",  cat:"行前費用", won:null, ntd:691  },
+  { name:"電火布",    cat:"行前費用", won:null, ntd:15   },
+];
+
+const days = [
+  {
+    date:"3/28", weekday:"六", emoji:"✈️", label:"抵達首爾",
+    items:[
+      { name:"晚餐",    cat:"餐飲",    won:11000, ntd:w(11000) },
+      { name:"餅乾",    cat:"食品零食",won:1500,  ntd:w(1500)  },
+      { name:"OY 購物", cat:"購物",    won:null,  ntd:4902, card:true },
+      { name:"耳環",    cat:"飾品配件",won:null,  ntd:509,  card:true },
+    ],
+  },
+  {
+    date:"3/29", weekday:"日", emoji:"🌸", label:"市區探索",
+    items:[
+      { name:"交通（T-money）", cat:"交通",    won:25000, ntd:w(25000) },
+      { name:"藥品",           cat:"藥品",    won:null,  ntd:2515, card:true },
+      { name:"午餐",           cat:"餐飲",    won:5750,  ntd:w(5750)  },
+      { name:"杜拜巧克力",      cat:"食品零食",won:5200,  ntd:w(5200)  },
+      { name:"小娃娃",          cat:"購物",    won:12000, ntd:w(12000) },
+      { name:"耳環",            cat:"飾品配件",won:null,  ntd:631, card:true },
+      { name:"晚餐（平攤½）",   cat:"餐飲",    won:null,  ntd:490, card:true },   // 980 → 490
+      { name:"草莓（平攤½）",   cat:"食品零食",won:2000,  ntd:86,  card:true },   // ₩4000→₩2000 / 171→86
+      { name:"OY 購物",         cat:"購物",    won:null,  ntd:1990, card:true },
+    ],
+  },
+  {
+    date:"3/30", weekday:"一", emoji:"💉", label:"醫美療程",
+    items:[
+      { name:"計程車（平攤½）", cat:"交通",    won:null,   ntd:166, card:true }, // 332 → 166
+      { name:"醫美療程",       cat:"醫美",    won:null,   ntd:86746, card:true },
+      { name:"藥品",           cat:"藥品",    won:null,   ntd:416,  card:true },
+      { name:"午餐",           cat:"餐飲",    won:6000,   ntd:w(6000)  },
+      { name:"小物 keychain",  cat:"購物",    won:4000,   ntd:w(4000)  },
+      { name:"North Face 外套",cat:"服飾",    won:188000, ntd:w(188000)},
+      { name:"飲料",           cat:"餐飲",    won:null,   ntd:47,   card:true },
+      { name:"大創雜貨",        cat:"購物",    won:21500,  ntd:w(21500) },
+      { name:"大創姓名貼",      cat:"購物",    won:2000,   ntd:w(2000)  },
+      { name:"超商點心",        cat:"食品零食",won:3400,   ntd:w(3400)  },
+      { name:"超商優格",        cat:"食品零食",won:7350,   ntd:w(7350)  },
+      { name:"晚餐",           cat:"餐飲",    won:55000,  ntd:w(55000) },
+    ],
+  },
+  {
+    date:"3/31", weekday:"二", emoji:"☁️", label:"悠閒散步",
+    items:[
+      { name:"午餐", cat:"餐飲", won:18000, ntd:w(18000) },
+      { name:"晚餐", cat:"餐飲", won:12000, ntd:w(12000) },
+    ],
+  },
+  {
+    date:"4/1", weekday:"三", emoji:"🛍️", label:"江南購物",
+    items:[
+      { name:"奉恩寺紀念品",    cat:"購物",    won:55000,  ntd:1161, card:true },
+      { name:"Columbia 外套",  cat:"服飾",    won:116100, ntd:2451, card:true },
+      { name:"午餐",           cat:"餐飲",    won:15000,  ntd:w(15000) },
+      { name:"North Face 包",  cat:"服飾",    won:75000,  ntd:1583, card:true },
+      { name:"晚餐",           cat:"餐飲",    won:10800,  ntd:228,  card:true },
+      { name:"emart 超市",     cat:"食品零食",won:40590,  ntd:857,  card:true },
+      { name:"藥局",           cat:"藥品",    won:8000,   ntd:169,  card:true },
+      { name:"草莓",           cat:"食品零食",won:4900,   ntd:w(4900) },
+    ],
+  },
+  {
+    date:"4/2", weekday:"四", emoji:"💍", label:"明洞逛街",
+    items:[
+      { name:"午餐",       cat:"餐飲",    won:16000, ntd:w(16000) },
+      { name:"耳環",       cat:"飾品配件",won:33600, ntd:719, card:true },
+      { name:"nyunyu 小物",cat:"購物",    won:28000, ntd:599, card:true },
+      { name:"晚餐",       cat:"餐飲",    won:32000, ntd:w(32000) },
+    ],
+  },
+  {
+    date:"4/3", weekday:"五", emoji:"🛫", label:"啟程回台",
+    items:[
+      { name:"OY 購物",   cat:"購物",    won:114970, ntd:2440, card:true },
+      { name:"spao 外套", cat:"服飾",    won:null,   ntd:528,  card:true }, // sapo → spao
+      { name:"糖果",      cat:"食品零食",won:2000,   ntd:w(2000) },
+      { name:"飯捲",      cat:"餐飲",    won:5000,   ntd:w(5000) },
+    ],
+  },
+];
+
+// ── Config ───────────────────────────────────────────────────────────────────
+const CAT_CONFIG = {
+  "餐飲":    { color:"#E8736A", bg:"#FFF0EF", icon:"🍽️" },
+  "購物":    { color:"#7C6AF7", bg:"#F3F1FF", icon:"🛍️" },
+  "服飾":    { color:"#F4A261", bg:"#FFF7EF", icon:"👗" },
+  "飾品配件":{ color:"#2A9D8F", bg:"#EDFAF8", icon:"💎" },
+  "醫美":    { color:"#E76F51", bg:"#FFF2EF", icon:"💉" },
+  "藥品":    { color:"#06A77D", bg:"#EDFAF5", icon:"💊" },
+  "食品零食":{ color:"#E9A319", bg:"#FFFBEF", icon:"🍓" },
+  "交通":    { color:"#5B8BD4", bg:"#EFF5FF", icon:"🚕" },
+  "行前費用":{ color:"#9B5DE5", bg:"#F5F0FF", icon:"📋" },
+};
+
+const fmt = n => Math.round(n).toLocaleString();
+
+// ── Totals ───────────────────────────────────────────────────────────────────
+const allDayItems  = days.flatMap(d => d.items);
+const grandDays    = allDayItems.reduce((s, i) => s + i.ntd, 0);
+const grandFixed   = fixedItems.reduce((s, i) => s + i.ntd, 0);
+const grand        = grandDays + grandFixed;
+const medicalNTD   = 86746;
+const nonMedical   = grand - medicalNTD;
+
+const catTotals = {};
+[...allDayItems, ...fixedItems].forEach(it => {
+  catTotals[it.cat] = (catTotals[it.cat] || 0) + it.ntd;
+});
+
+// fill header
+document.getElementById('h-grand').textContent  = 'NT$ ' + fmt(grand);
+document.getElementById('h-nonmed').textContent = 'NT$ ' + fmt(nonMedical);
+document.getElementById('h-days').textContent   = 'NT$ ' + fmt(grandDays);
+document.getElementById('h-fixed').textContent  = 'NT$ ' + fmt(grandFixed);
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+let cardCounter = 0;
+
+function buildCard({ title, subtitle, emoji, borderColor, totalColor, items, badge }) {
+  const id    = 'card-' + (cardCounter++);
+  const total = items.reduce((s, i) => s + i.ntd, 0);
+  const wonT  = items.reduce((s, i) => s + (i.won || 0), 0);
+  const tc    = totalColor || 'var(--red)';
+  const bc    = borderColor || 'var(--border)';
+
+  const rows = items.map((item, idx) => {
+    const cfg  = CAT_CONFIG[item.cat] || { color:'#999', bg:'#F5F5F5', icon:'📌' };
+    const last = idx === items.length - 1;
+    return `
+      <div class="item-row" style="${last?'border-bottom:none':''}">
+        <span class="cat-tag" style="color:${cfg.color};background:${cfg.bg}">${cfg.icon} ${item.cat}</span>
+        <span class="item-name">${item.name}${item.card ? '<span class="card-tag">💳</span>':''}</span>
+        <div class="item-amounts">
+          <div class="item-ntd">NT$ ${fmt(item.ntd)}</div>
+          ${item.won ? `<div class="item-won">₩${fmt(item.won)}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="card" style="border-color:${bc}">
+      <button class="card-header" onclick="toggleCard('${id}', this)">
+        <div class="card-icon">${emoji}</div>
+        <div class="card-meta">
+          <div class="card-title-row">
+            <span class="card-title">${title}</span>
+            ${subtitle ? `<span class="card-badge">${subtitle}</span>` : ''}
+          </div>
+          <div class="card-count">${items.length} 筆消費</div>
+        </div>
+        <div class="card-total">
+          <div class="card-total-ntd" style="color:${tc}">NT$ ${fmt(total)}</div>
+          ${wonT > 0 ? `<div class="card-total-won">₩ ${fmt(wonT)}</div>` : ''}
+        </div>
+        <span class="card-arrow" id="arr-${id}">▼</span>
+      </button>
+      <div class="card-body" id="${id}">
+        ${rows}
+        <div class="subtotal-row">
+          <span class="subtotal-label">小計</span>
+          <span class="subtotal-val" style="color:${tc}">NT$ ${fmt(total)}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function toggleCard(id, btn) {
+  const body = document.getElementById(id);
+  const arr  = document.getElementById('arr-' + id);
+  const open = body.classList.toggle('open');
+  arr.textContent = open ? '▲' : '▼';
+}
+
+// ── Render days panel ────────────────────────────────────────────────────────
+const daysPanel = document.getElementById('panel-days');
+let daysHTML = buildCard({
+  title: '行前固定費用', emoji: '📋',
+  borderColor: '#EDE0FF', totalColor: '#9B5DE5',
+  items: fixedItems,
+});
+days.forEach(day => {
+  daysHTML += buildCard({
+    title: `${day.date}（${day.weekday}）`,
+    subtitle: day.label,
+    emoji: day.emoji,
+    items: day.items,
+  });
+});
+daysPanel.innerHTML = daysHTML;
+
+// ── Render summary panel ─────────────────────────────────────────────────────
+const summaryPanel = document.getElementById('panel-summary');
+
+// Category bars
+const sortedCats = Object.entries(catTotals).sort((a,b) => b[1] - a[1]);
+const maxCat     = Math.max(...Object.values(catTotals));
+let catRows = sortedCats.map(([cat, total]) => {
+  const cfg = CAT_CONFIG[cat] || { color:'#999', icon:'📌' };
+  const pct    = (total / grand * 100).toFixed(1);
+  const barPct = (total / maxCat * 100).toFixed(0);
+  return `
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">${cfg.icon} ${cat}</span>
+        <span class="bar-val" style="color:${cfg.color}">NT$ ${fmt(total)} <span style="color:#C9A882;font-weight:400">(${pct}%)</span></span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${barPct}%;background:${cfg.color}"></div>
+      </div>
+    </div>`;
+}).join('');
+
+// Daily bars
+const maxDay = Math.max(...days.map(d => d.items.reduce((s,i) => s+i.ntd, 0)));
+let dayRows = days.map(day => {
+  const total = day.items.reduce((s,i) => s+i.ntd, 0);
+  const barPct = (total / maxDay * 100).toFixed(0);
+  return `
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">${day.date} ${day.emoji} ${day.label}</span>
+        <span class="bar-val" style="color:var(--red)">NT$ ${fmt(total)}</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${barPct}%;background:var(--red2)"></div>
+      </div>
+    </div>`;
+}).join('');
+
+// Dark summary rows
+const cats = ["餐飲","購物","服飾","飾品配件","醫美","藥品","食品零食","交通"];
+let darkRows = [["行前固定費用", grandFixed], ...cats.map(c => [c, catTotals[c]||0])]
+  .map(([label, val]) => `
+    <div class="dark-row">
+      <span>${label}</span>
+      <span>NT$ ${fmt(val)}</span>
+    </div>`).join('');
+
+summaryPanel.innerHTML = `
+  <div class="summary-card">
+    <div class="summary-title">📊 分類統計</div>
+    ${catRows}
+  </div>
+  <div class="summary-card">
+    <div class="summary-title">🗓️ 每日花費</div>
+    ${dayRows}
+  </div>
+  <div class="dark-card">
+    <div class="dark-card-label">💰 費用總結</div>
+    ${darkRows}
+    <div class="dark-total">
+      <span>總計</span>
+      <span>NT$ ${fmt(grand)}</span>
+    </div>
+    <div class="dark-sub">
+      <span>扣除醫美（NT$ ${fmt(medicalNTD)}）</span>
+      <span>NT$ ${fmt(nonMedical)}</span>
+    </div>
+  </div>`;
+
+// ── Tab switching ────────────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+</script>
+</body>
+</html>
